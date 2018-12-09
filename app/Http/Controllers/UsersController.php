@@ -117,6 +117,7 @@ class UsersController extends Controller
        return view('admin.manager' , compact('users'));
       //dd($id);
     }
+    // artronin
     /**
      * Remove the specified resource from storage.
      *
