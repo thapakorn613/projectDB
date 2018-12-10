@@ -52,6 +52,7 @@ Route::any('login_patien', 'UsersController@login');
 Route::get('/check-model','operationController@getIndex');
 Route::any('operationShow/{operation_id}','operationController@operationShow');
 
-
-
+Route::any('addrestroom', 'UsersController@addrestroom');
+Route::any('updateroom/{id}', 'UsersController@updateroom');
+Route::any('showroom/{id}', 'UsersController@showroom');
 

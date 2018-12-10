@@ -60,6 +60,53 @@ class UsersController extends Controller
 
     }
 
+    public function addrestroom(Request $request)
+    {
+
+        $room = DB::table('room')->get();
+        
+        
+        return view('addrestroom' ,['room' => $room]);
+        
+       
+       
+
+    }
+
+    public function updateroom(Request $request, $id)
+    {
+        $asd =  auth()->User('name');
+        $user = User::find($asd->id);
+        $room = DB::table('room')->get();
+        foreach($room as $i)
+        {
+            if($i->patient_id==$user->id)
+            {
+                $room = $i->room_id;
+               
+                return view('showroom' ,['i' => $i]);
+            }
+        }
+
+        //echo $id;
+        DB::table('room')
+            ->where('room_id', $id)
+            ->update(['status' => "busy"]);
+
+        
+       
+            $asd =  auth()->User('name');
+            $user = User::find($asd->id);
+
+        DB::table('room')
+            ->where('room_id', $id)
+            ->update(['patient_id' => $asd->id]);
+
+            return view('me' ,['user' => $user]);
+       
+
+    }
+
     public function user_login()
     {
            return view('user_login');
@@ -74,10 +121,7 @@ class UsersController extends Controller
     public function me()
     {
         $asd =  auth()->User('name');
-        //echo $asd;
-        //echo $asd->id;
         $user = User::find($asd->id);
-        //echo $user->name;
         return view('me' ,['user' => $user]);
 
     }
