@@ -6,8 +6,12 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
 
+
+
 class UsersController extends Controller
 {
+
+    private $me ;
     /**
      * Display a listing of the resource.
      *
@@ -21,12 +25,38 @@ class UsersController extends Controller
 
     }
 
+    public function login(Request $request)
+    {
+        
+        $users = DB::table('users')->get();
+        
+        foreach ($users as $eiei) {
+          
+            if($eiei->email == $request->get('email') &&password_verify($request->get('password'), $eiei->password)  )
+            {  
+                
+                $this->me = $eiei->id;
+                
+                $user = User::find($this->me);
+                
+                return view('me' ,['user' => $user]);
+            }
+        }
+        return view('auth/login');
+        //$user = User::find($request->get('email'));
+        
+        //return view('me');
+
+    }
+
     public function adddoctor(Request $request)
     {
-        $users = DB::table('surgeons')->get();
-       
-        //$user = DB::table('users')->where('id', )->first();
-       //echo $user->name;
+
+        $users = DB::table('general_practice')->get();
+        
+        
+        return view('adddoctor' ,['users' => $users]);
+        
 
     }
 
@@ -41,9 +71,13 @@ class UsersController extends Controller
        
     }
 
-    public function me($id)
+    public function me()
     {
-        $user = User::find($id);
+        $asd =  auth()->User('name');
+        //echo $asd;
+        //echo $asd->id;
+        $user = User::find($asd->id);
+        //echo $user->name;
         return view('me' ,['user' => $user]);
 
     }
