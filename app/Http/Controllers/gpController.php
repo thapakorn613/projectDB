@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers;
 use App\User;
-use App\operation;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
@@ -18,7 +17,8 @@ class gpController extends Controller
     public function showOperation(Request $request)
     {
         $operation = DB::table('operation')->get();
-        return view('operation_gp' , ['operation'=> $operation]);
+        $patient = DB::table('patient')->get();
+        return view('operation_gp' , ['operation'=> $operation],['patient'=> $patient]);
     }
 
 }
