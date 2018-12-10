@@ -33,11 +33,7 @@
               </table>
               
                
-              <form action="{{action('UsersController@search')}}" method="get">
-                   ID: <input type="text" name="id">
-                     
-                  <input type="submit" value="Search">
-                      </form>
+              
 
 
 

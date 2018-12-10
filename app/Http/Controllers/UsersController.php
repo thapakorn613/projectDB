@@ -21,12 +21,35 @@ class UsersController extends Controller
 
     }
 
-    public function adddoctor()
+    public function adddoctor(Request $request)
     {
         $users = DB::table('surgeons')->get();
-        
-        return view('adddoctor' ,['users' => $users]);
+       
+        //$user = DB::table('users')->where('id', )->first();
+       
+       //echo $user->name;
 
+    }
+
+    public function user_login()
+    {
+        
+       
+           return view('user_login');
+       
+        
+       
+       
+    }
+    public function patient_login()
+    {
+        
+       
+           
+       
+        return view('auth/login');
+       
+       
     }
 
     public function me($id)

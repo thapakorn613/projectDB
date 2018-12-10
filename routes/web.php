@@ -43,6 +43,8 @@ Route::any('update2/{id}', 'UsersController@update2');
 Route::any('search', 'UsersController@search');
 Route::any('index', 'UsersController@index');
 Route::any('adddoctor', 'UsersController@adddoctor');
+Route::any('user_login', 'UsersController@user_login');
+Route::any('patient_login', 'UsersController@patient_login');
 
 Route::get('/check-model','operationController@getIndex');
 Route::any('operationShow/{operation_id}','operationController@operationShow');
