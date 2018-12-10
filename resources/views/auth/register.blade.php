@@ -68,13 +68,7 @@
                                             </span>
                                         @endif
                                     </div>
-                                </div>
-        
-        
-        
-        
-                          
-        
+                                </div> 
         
         
                                 <div class="form-group row">
@@ -90,7 +84,7 @@
                                         @endif
                                     </div>
 
-                                          <label for="name" class="col-md-2 col-form-label text-md-right">{{ __('gender') }}</label>
+                                    <label for="name" class="col-md-2 col-form-label text-md-right">{{ __('gender') }}</label>
         
                                     <div class="col-md-4">
                                         <select  id="gender" class="form-control{{ $errors->has('gender') ? ' is-invalid' : '' }}" name="gender" value="{{ old('gender') }}" required autofocus>
@@ -106,22 +100,10 @@
                                 </div>
         
 
-                            
-                                    <div class="form-group row">
-                                    <label for="name" class="col-md-2 col-form-label text-md-right">{{ __('patient_type_id') }}</label>
-        
-                                    <div class="col-md-4">
-                                        <input id="patient_type_id" type="text" class="form-control{{ $errors->has('patient_type_id') ? ' is-invalid' : '' }}" name="patient_type_id" value="{{ old('patient_type_id') }}" required autofocus>
-        
-                                        @if ($errors->has('patient_type_id'))
-                                            <span class="invalid-feedback" role="alert">
-                                                <strong>{{ $errors->first('patient_type_id') }}</strong>
-                                            </span>
-                                        @endif
-                                    </div>
+                                <div class="form-group row">
                                     <label for="email" class="col-md-2 col-form-label text-md-right">{{ __('E-Mail Address') }}</label>
         
-                                    <div class="col-md-4">
+                                    <div class="col-md-7">
                                         <input id="email" type="email" class="form-control{{ $errors->has('email') ? ' is-invalid' : '' }}" name="email" value="{{ old('email') }}" required>
         
                                         @if ($errors->has('email'))
