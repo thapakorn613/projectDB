@@ -28,6 +28,10 @@ Route::get('/', 'HomeController@index')->name('home');
 Route::get('/home', 'HomeController@index')->name('home');
 
 
+// gpController
+Route::any('showOperation', 'gpController@showOperation');
+
+
 // UserController
 Route::resource('user', 'UsersController');
 Route::any('manager', 'UsersController@manager');

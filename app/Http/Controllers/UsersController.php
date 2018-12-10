@@ -26,27 +26,16 @@ class UsersController extends Controller
         $users = DB::table('surgeons')->get();
        
         //$user = DB::table('users')->where('id', )->first();
-       
        //echo $user->name;
 
     }
 
     public function user_login()
     {
-        
-       
            return view('user_login');
-       
-        
-       
-       
     }
     public function patient_login()
     {
-        
-       
-           
-       
         return view('auth/login');
        
        

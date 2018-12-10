@@ -13,20 +13,6 @@
               <tr> <th>fee</th>
                 <th>"{{$room->data}}"</th>
               <tr>
-
-             
-              
-              
-              
-              
-              
-              
-             
-             
-              
-
-          
-               
                <form action="{{action('roomController@searchroom')}}" method="get">
                  room: <input type="text" name="id">
                      
