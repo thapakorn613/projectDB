@@ -34,12 +34,13 @@ Route::get('/home', 'HomeController@index')->name('home');
 
 Route::resource('user', 'UsersController');
 
+Route::any('manager', 'UsersController@manager');
 	
 Route::any('destroy/{id}', 'UsersController@destroy');
 Route::any('me/{id?}', 'UsersController@me');
 Route::any('adddoctor/{id?}', 'UsersController@adddoctor');
 Route::any('update/{id}', 'UsersController@update');
-Route::any('update2/{id}', 'UsersController@update2');
+Route::any('update_to_database/{id}', 'UsersController@update_to_database');
 Route::any('search', 'UsersController@search');
 Route::any('index', 'UsersController@index');
 Route::any('adddoctor', 'UsersController@adddoctor');

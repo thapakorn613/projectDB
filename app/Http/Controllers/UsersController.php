@@ -112,7 +112,7 @@ class UsersController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update2(Request $request, $id)
+    public function update_to_database(Request $request, $id)
     {
         //
         $user = User::find($id);
@@ -131,7 +131,17 @@ class UsersController extends Controller
         $users = User::all()->toArray();
        return view('index' , compact('users'));
     }
-
+    public function manager()
+    {
+       // return view('create');
+       //$user = User::find($id);
+      // $user->delete();
+      $users = User::all()->toArray();
+       return view('admin.manager' , compact('users'));
+      //dd($id);
+    }
+    // artronin
+    // bankkooo
     /**
      * Remove the specified resource from storage.
      *
