@@ -20,7 +20,7 @@
               
               
 
-             <td><a href="{{action('UsersController@index')}}" class="btn btn-primary">add</a></td>
+             <td><a href="{{action('UsersController@me')}}" class="btn btn-primary">add</a></td>
            
               
 

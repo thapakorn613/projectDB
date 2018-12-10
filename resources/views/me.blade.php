@@ -10,6 +10,9 @@
               
 
               <table class="table table-bordered table-striped">
+              <tr> <th>id</th>
+<th>"{{$user->id}}"</th>
+              <tr>
               <tr> <th>first name</th>
 <th>"{{$user->name}}"</th>
               <tr>
@@ -44,11 +47,9 @@
                <td ><a href="{{ action('operationController@operationShow',$user->id )}}" method="get"> "{{$user->operation_id}}"</a></td>
                <tr> 
                     
+              <br><br>
               
-              
-               <a href="{{action('UsersController@adddoctor',$user->id )}}" class="btn btn-primary">add_doctor</a>
-              
-              
+               <a href="{{action('UsersController@adddoctor')}}" class="btn btn-primary">add_doctor</a>
              
              
               
