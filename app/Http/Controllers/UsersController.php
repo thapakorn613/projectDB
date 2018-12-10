@@ -57,27 +57,15 @@ class UsersController extends Controller
         
         return view('adddoctor' ,['users' => $users]);
         
-       
-       
 
     }
 
     public function user_login()
     {
-        
-       
            return view('user_login');
-       
-        
-       
-       
     }
     public function patient_login()
     {
-        
-       
-           
-       
         return view('auth/login');
        
        
