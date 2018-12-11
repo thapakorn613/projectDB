@@ -119,6 +119,8 @@ trait AuthenticatesUsers
     protected function authenticated(Request $request, $user)
     {
         //
+        echo "eieieieiei";
+        return view('me');
     }
 
     /**
