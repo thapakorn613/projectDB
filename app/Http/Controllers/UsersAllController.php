@@ -141,16 +141,18 @@ class UsersAllController extends Controller
 
     public function update($id)
     {
-        $user = userData::find($id);
+        $user = userData::find($id)->getUser;
        return view('update' , compact('user','id'));
+
       }
 
     public function search(Request $request)
     {
         $user = userData::find($request->get('id'));
         $patient_type=$user->getUser;
-        echo $patient_type;
-      //return view('searchUserAll' ,compact('user','id'));
+      //  echo $patient_type;
+      //  echo $user;
+        return view('searchUserAll' ,compact('user','patient_type'));
     }
 
 

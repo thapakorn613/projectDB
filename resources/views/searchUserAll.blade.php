@@ -39,7 +39,7 @@
 <tr>
               
               <th>patian_type</th>
- <td>"{{$user->name_type}}"</td>
+ <td>"{{$patient_type->name_type}}"</td>
  <tr>
               <th>operation_id</th>
                <td ><a href="{{ action('operationController@operationShow',$user->id )}}" method="get"> "{{$user->operation_id}}"</a></td>
