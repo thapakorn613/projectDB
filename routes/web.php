@@ -33,6 +33,11 @@ Route::any('showOperation', 'gpController@showOperation');
 Route::any('myPatient', 'gpController@myPatient');
 Route::any('mySchedule', 'gpController@mySchedule');
 
+// staffController
+Route::any('nurse/showOperation', 'staffController@operation_Nurse');
+Route::any('surgeons/showOperation', 'staffController@operation_Surgeons');
+Route::any('anesthetists/showOperation', 'staffController@operation_Anesthetists');
+
 // UserGPLoginController
 Route::prefix('usergp')->group(function(){
     Route::get('/login', 'Auth\UserGPLoginController@showLoginForm')->name('usergp.login');
