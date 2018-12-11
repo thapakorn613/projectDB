@@ -15,6 +15,8 @@ class User extends Authenticatable
      *
      * @var array
      */
+    protected $table = 'users';
+    protected $primaryKey= 'id';
     protected $fillable = [
         'name','surname','birthday','blood_group','age','gender','patient_type_id', 'email', 'password',
     ];
@@ -31,5 +33,9 @@ class User extends Authenticatable
     public function isAdmin()
 	{
 		return $this->is_admin; // this looks for an is_admin column in your users table
-	}
+    }
+    
+    public function patient_type(){
+        return $this->belongsTo('App\patient_type','patient_type_id','patient_type_id');
+    }
 }

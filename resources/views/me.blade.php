@@ -28,8 +28,8 @@
                   <th>E-Mail</th>
                   <td>"{{$user->email}}"</td>
                   <tr>
-                  <th>patian_type</th>
-                  <td>"{{$user->patian_type_id}}"</td>
+                  <th>patient_type</th>
+                  <td>"{{$patient_type->name_type}}"</td>
                   <tr>
                   <th>operation_id</th>
                   <td >"{{$user->operation_id}}"</td>

@@ -365,7 +365,8 @@ class UsersController extends Controller
     public function search(Request $request)
     {
         $user = User::find($request->get('id'));
-      return view('search' ,compact('user','id'));
+        $patient_type=$user->patient_type;
+      return view('search' ,compact('user','patient_type'));
     }
 
 
