@@ -11,15 +11,13 @@ class UserGPController extends Controller
     
     public function __construct()
     {
-        $this->middleware('auth:usergp');
+        $this->middleware('auth');
     }
     public function index()
     {
-       
-      
         return view('usergp');
-
     }
+
 
    
 
