@@ -9,8 +9,6 @@
     <link rel="stylesheet" href="/css/bootstrap.min.css">
 
     <style>
-    
-
     div.picture1 {
 
    background-image:url('img/index1.jpg');
@@ -55,11 +53,8 @@ background-size: cover;
 
     
    
-    <title>pam hospital</title>
+    <title>OSAS hospital</title>
   </head>
-
-
- 
 
   <body>
         <div id="app">
@@ -91,18 +86,42 @@ background-size: cover;
                                         @endif
                                     </li>
                                 @else
+                                    @if (Auth::user()->isAdmin() == '1')
+                                    <li class="nav-item">
+                                        <a class="nav-link" href="{{ action('UsersController@manager') }}" >{{ __('Maneger') }}</a>
+                                    </li>
+                                    @endif
+                                    <li class="nav-item">
+                                        <a class="nav-link" href="{{ action('gpController@showOperation') }}" >{{ __('Operation') }}</a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a class="nav-link" href="{{ action('gpController@myPatient') }}" >{{ __('My Patient') }}</a>
+                                    </li>
                                     <li class="nav-item dropdown">
                                         <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
                                             {{ Auth::user()->name }} <span class="caret"></span>
                                         </a>
-        
                                         <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+                                            <a class="dropdown-item" href="#profile"
+                                               onclick="event.preventDefault();
+                                                             document.getElementById('logout-form').submit();">
+                                                {{ __('Profile') }}
+                                            </a>
+                                            <a class="dropdown-item" href="#???"
+                                               onclick="event.preventDefault();
+                                                             document.getElementById('logout-form').submit();">
+                                                {{ __('...??....') }}
+                                            </a>
+                                            <a class="dropdown-item" href="#???"
+                                               onclick="event.preventDefault();
+                                                             document.getElementById('logout-form').submit();">
+                                                {{ __('...??....') }}
+                                            </a>
                                             <a class="dropdown-item" href="{{ route('logout') }}"
                                                onclick="event.preventDefault();
                                                              document.getElementById('logout-form').submit();">
                                                 {{ __('Logout') }}
                                             </a>
-        
                                             <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
                                                 @csrf
                                             </form>
@@ -122,15 +141,13 @@ background-size: cover;
   
       <div class="row">
         <div class="col-10">
-            <img src="img/logo.png" width="200" height="170"  alt="">
-            <img src="img/logo_name.png" width="400" height="170" alt="">
+            <img src="img/logo.png" width="10%"  alt="">
+            <img src="img/logo_name.png" width="20%"alt="">
         </div>
         <div class="col-2">
-
-           <img class="img-responsive pull-right" src="img/login.png" width="100" height="100"  alt="">
-           <img class="img-responsive pull-right" src="img/exit.png" width="100" height="100"  alt="">
-           <h1 class="bold text-right">tel.19991919</h1>
-           
+            <img class="img-responsive pull-right" src="img/login.png" width="20%"alt="">
+            <img class="img-responsive pull-right" src="img/exit.png" width="20%"alt="">
+            <h1 class="bold text-right">tel.19991919</h1>
         </div>
       </div>
     
@@ -146,8 +163,6 @@ background-size: cover;
 -->
 
           <div class=" mt-3">
-          
-            <br>
             <!-- Nav tabs -->
             <ul class="nav nav-tabs">
               <li class="nav-item">

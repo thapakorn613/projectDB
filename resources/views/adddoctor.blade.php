@@ -20,7 +20,7 @@
               
               
 
-             <td><a href="{{action('UsersController@index')}}" class="btn btn-primary">add</a></td>
+             <td><a href="{{action('UsersController@me')}}" class="btn btn-primary">add</a></td>
            
               
 
@@ -33,11 +33,7 @@
               </table>
               
                
-              <form action="{{action('UsersController@search')}}" method="get">
-                   ID: <input type="text" name="id">
-                     
-                  <input type="submit" value="Search">
-                      </form>
+              
 
 
 

@@ -8,10 +8,11 @@
             <div class="col-md-12">
                <br><br>
               
-
+              <center>
               <table class="table table-bordered table-striped">
-              <tr> <th>fee</th>
-                <th>"{{$room->data}}"</th>
+              <tr> <th>Your room </th>
+                <th>"{{$i->room_id}}"</th>
+                <th> <a href="{{action('UsersController@cancelroom',$i->room_id )}}" class="btn btn-danger">cancel</a></th>
               <tr>
 
              
@@ -19,21 +20,8 @@
               
               
               
+</center>
               
-              
-             
-             
-              
-
-          
-               
-               <form action="{{action('roomController@searchroom')}}" method="get">
-                 room: <input type="text" name="id">
-                     
-                  <input type="submit" value="Search">
-                      </form>
-
-
 
                </div>
                </div>

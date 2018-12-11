@@ -15,23 +15,14 @@
               <th>edit</th>
               <th> delete</th>
 
-              @foreach($users as $row) <tr>
-                        <td>{{$row['id']}}</td>
-              <td>{{$row['name']}}</td>
-              
-
-             <td><a href="{{action('UsersController@update',$row['id'])}}" class="btn btn-primary">Edit</a></td>
-             <td><a href="{{action('UsersController@destroy',$row['id'])}}" class="btn btn-danger">delete</a></td>
-             
-           
-              
-
-              </tr>
+              @foreach($users as $row) 
+                  <tr>
+                  <td>{{$row['id']}}</td>
+                  <td>{{$row['name']}}</td>
+                  <td><a href="{{action('UsersController@update',$row['id'])}}" class="btn btn-primary">Edit</a></td>
+                  <td><a href="{{action('UsersController@destroy',$row['id'])}}" class="btn btn-danger">Delete</a></td>
+                  </tr>
               @endforeach
-
-
-
-
               </table>
               
                

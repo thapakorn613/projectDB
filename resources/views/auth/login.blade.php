@@ -5,7 +5,7 @@
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">
-                <div class="card-header">{{ __('Login') }}</div>
+                <div class="card-header">{{ __('Login as patient') }}</div>
 
                 <div class="card-body">
                     <form method="POST" action="{{ route('login') }}">
@@ -62,6 +62,7 @@
                                 </a>
                             </div>
                         </div>
+                        <a href="{{action('UsersController@user_login')}}" class="btn btn-primary">login user</a>
                     </form>
                 </div>
             </div>

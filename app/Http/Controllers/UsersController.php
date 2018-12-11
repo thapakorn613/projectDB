@@ -6,8 +6,12 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
 
+
+
 class UsersController extends Controller
 {
+
+    private $me ;
     /**
      * Display a listing of the resource.
      *
@@ -21,17 +25,125 @@ class UsersController extends Controller
 
     }
 
-    public function adddoctor()
+    public function login(Request $request)
     {
-        $users = DB::table('surgeons')->get();
         
-        return view('adddoctor' ,['users' => $users]);
+        $users = DB::table('users')->get();
+        
+        foreach ($users as $eiei) {
+          
+            if($eiei->email == $request->get('email') &&password_verify($request->get('password'), $eiei->password)  )
+            {  
+                
+                $this->me = $eiei->id;
+                
+                $user = User::find($this->me);
+                
+                return view('me' ,['user' => $user]);
+            }
+        }
+        return view('auth/login');
+        //$user = User::find($request->get('email'));
+        
+        //return view('me');
 
     }
 
-    public function me($id)
+    public function adddoctor(Request $request)
     {
-        $user = User::find($id);
+
+        $users = DB::table('general_practice')->get();
+        
+        
+        return view('adddoctor' ,['users' => $users]);
+        
+
+    }
+
+    public function cancelroom(Request $request,$id)
+    {
+
+        DB::table('room')
+        ->where('room_id', $id)
+        ->update(['patient_id' => null]);
+        
+        DB::table('room')
+            ->where('room_id', $id)
+            ->update(['status' =>"idle"]);
+
+        
+        
+            $asd =  auth()->User('name');
+            $user = User::find($asd->id);
+        
+            return view('me' ,['user' => $user]);
+    }
+
+    public function addrestroom(Request $request)
+    {
+
+       
+        $asd =  auth()->User('name');
+        $user = User::find($asd->id);
+        $room = DB::table('room')->get();
+        foreach($room as $i)
+        {
+            if($i->patient_id==$user->id)
+            {
+                $room = $i->room_id;
+               
+                return view('showroom' ,['i' => $i]);
+            }
+        }
+
+        
+        return view('addrestroom' ,['room' => $room]);
+        
+       
+       
+
+    }
+
+    public function updateroom(Request $request, $id)
+    {
+        $asd =  auth()->User('name');
+        $user = User::find($asd->id);
+        $room = DB::table('room')->get();
+        
+
+        //echo $id;
+        DB::table('room')
+            ->where('room_id', $id)
+            ->update(['status' => "busy"]);
+
+        
+       
+           
+
+        DB::table('room')
+            ->where('room_id', $id)
+            ->update(['patient_id' => $asd->id]);
+
+            return view('me' ,['user' => $user]);
+       
+
+    }
+
+    public function user_login()
+    {
+           return view('user_login');
+    }
+    public function patient_login()
+    {
+        return view('auth/login');
+       
+       
+    }
+
+    public function me()
+    {
+        $asd =  auth()->User('name');
+        $user = User::find($asd->id);
         return view('me' ,['user' => $user]);
 
     }
@@ -89,7 +201,7 @@ class UsersController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update2(Request $request, $id)
+    public function update_to_database(Request $request, $id)
     {
         //
         $user = User::find($id);
@@ -108,7 +220,17 @@ class UsersController extends Controller
         $users = User::all()->toArray();
        return view('index' , compact('users'));
     }
-
+    public function manager()
+    {
+       // return view('create');
+       //$user = User::find($id);
+      // $user->delete();
+      $users = User::all()->toArray();
+       return view('admin.manager' , compact('users'));
+      //dd($id);
+    }
+    // artronin
+    // bankkooo
     /**
      * Remove the specified resource from storage.
      *
