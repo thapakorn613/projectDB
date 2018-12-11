@@ -55,7 +55,7 @@ class UsersController extends Controller
         $asd =  auth()->User('name');
         $user = User::find($asd->id);
        
-        $time = date("Y-m-d", time());
+        
         
 
        
@@ -72,7 +72,7 @@ class UsersController extends Controller
         
             if( $room != null )
             {
-               
+                $time = date("Y-m-d", time());
                 $datetime1 = new DateTime($room->start_contract);
                 $datetime2 = new DateTime($time);
                 $interval = $datetime1->diff($datetime2);
@@ -84,6 +84,8 @@ class UsersController extends Controller
                 DB::table('presciption')
                 ->where('patient_id', $user->id)
                 ->update(['room_price' => $total]);
+
+               
                  
             }
         
@@ -94,7 +96,7 @@ class UsersController extends Controller
                 DB::table('presciption')
                 ->where('patient_id', $user->id)
                 ->update(['operation_price' => $operation->fee]);
-                 
+                
             }
        
         $total = $price->room_price + $price->operation_price ;
@@ -104,13 +106,16 @@ class UsersController extends Controller
             DB::table('presciption')
                 ->where('patient_id', $user->id)
                 ->update(['discount' => $discount]);
+                
        }
        $total = $total -  $price->discount;
         
         DB::table('presciption')
                 ->where('patient_id', $user->id)
                 ->update(['price' => $total]);
-        //echo  $price->price;
+      
+
+       $price = DB::table('presciption')->where('patient_id', $user->id)->first();
         return view('price' ,['price' => $price]);
         
 
