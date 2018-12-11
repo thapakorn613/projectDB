@@ -50,12 +50,8 @@ Route::any('patient_login', 'UsersController@patient_login');
 // OperationController
 Route::get('/check-model','operationController@getIndex');
 Route::any('operationShow/{operation_id}','operationController@operationShow');
-<<<<<<< HEAD
 
 Route::any('addrestroom', 'UsersController@addrestroom');
 Route::any('updateroom/{id}', 'UsersController@updateroom');
-Route::any('cancelroom/{id}', 'UsersController@cancelroom');
 Route::any('showroom/{id}', 'UsersController@showroom');
 
-=======
->>>>>>> parent of a5cfbc5... show_description_after_login
