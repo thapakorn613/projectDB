@@ -62,6 +62,7 @@
                                 </a>
                             </div>
                         </div>
+                        <a href="{{action('UsersController@patient_login')}}" class="btn btn-primary">login user</a>
                     </form>
                 </div>
             </div>

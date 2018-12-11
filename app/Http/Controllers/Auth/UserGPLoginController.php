@@ -8,7 +8,7 @@ class UserGPLoginController extends Controller
 {
     public function __construct()
     {
-        $this->middleware('guest');
+        $this->middleware('guest',['except'=>['logout']]);
     }
 
     public function showLoginForm ()
@@ -29,5 +29,10 @@ class UserGPLoginController extends Controller
         return redirect()->back()->withInput($request->only('email','remember'));
         
 
+    }
+    public function logout()
+    {
+        Auth::guard('usergp')->logout();
+        return redirect('/');
     }
 }

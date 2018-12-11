@@ -7,6 +7,7 @@ use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
 use App\User;
+use Auth;
 
 class LoginController extends Controller
 {
@@ -37,7 +38,7 @@ class LoginController extends Controller
      */
     public function __construct()
     {
-        $this->middleware('guest:web')->except('logout');
+        $this->middleware('guest:web',['except'=>['logout','userLogout']]);
     }
 
     protected function authenticated(Request $request, User $user){
@@ -54,5 +55,10 @@ class LoginController extends Controller
         }
 
         return view('auth/login');
+    }
+    public function userLogout()
+    {
+        Auth::guard('web')->logout();
+        return redirect('/');
     }
 }

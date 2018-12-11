@@ -9,7 +9,7 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 class Usergp extends Authenticatable
 {
     use Notifiable;
-    protected $gurad ='usergp';
+    protected $guard ='usergp';
     /**
      * The attributes that are mass assignable.
      *
