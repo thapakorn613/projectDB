@@ -82,9 +82,7 @@ class UsersController extends Controller
     public function addrestroom(Request $request)
     {
 
-        
-        echo date("Y-m-d h:i:s a", time());
-        /*
+       
         $asd =  auth()->User('name');
         $user = User::find($asd->id);
         $room = DB::table('room')->get();
@@ -101,14 +99,13 @@ class UsersController extends Controller
         
         return view('addrestroom' ,['room' => $room]);
         
-       */
+       
        
 
     }
 
     public function updateroom(Request $request, $id)
     {
-
         $asd =  auth()->User('name');
         $user = User::find($asd->id);
         $room = DB::table('room')->get();

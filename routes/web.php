@@ -37,7 +37,7 @@ Route::resource('user', 'UsersController');
 Route::any('manager', 'UsersController@manager');
 Route::any('destroy/{id}', 'UsersController@destroy');
 Route::any('me/{id?}', 'UsersController@me');
-Route::any('adddoctor/{id?}', 'UsersController@adddoctor');
+Route::any('adddoctor', 'UsersController@adddoctor');
 Route::any('update/{id}', 'UsersController@update');
 Route::any('update_to_database/{id}', 'UsersController@update_to_database');
 Route::any('search', 'UsersController@search');
@@ -45,6 +45,7 @@ Route::any('index', 'UsersController@index');
 Route::any('adddoctor', 'UsersController@adddoctor');
 Route::any('user_login', 'UsersController@user_login');
 Route::any('patient_login', 'UsersController@patient_login');
+Route::any('login_patien', 'UsersController@login');
 
 
 // OperationController
@@ -53,5 +54,6 @@ Route::any('operationShow/{operation_id}','operationController@operationShow');
 
 Route::any('addrestroom', 'UsersController@addrestroom');
 Route::any('updateroom/{id}', 'UsersController@updateroom');
+Route::any('cancelroom/{id}', 'UsersController@cancelroom');
 Route::any('showroom/{id}', 'UsersController@showroom');
 
