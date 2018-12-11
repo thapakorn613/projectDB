@@ -18,7 +18,9 @@ class gpController extends Controller
     public function showOperation(Request $request)
     {
         $operation = DB::table('operation')->get();
-        return view('operation_gp' , ['operation'=> $operation]);
+        $patient = DB::table('patient')->get();
+        $gp = DB::table('general_practice')->get();
+        return view('gp/operation_gp' , ['operation'=> $operation,'patient'=> $patient,'gp'=> $gp]);
     }
 
 }
