@@ -13,7 +13,6 @@
 
 Auth::routes();
 
-Route::get('/', 'HomeController@index')->name('home');
 
 /*
 Route::get('/createAccount', function () {
@@ -24,21 +23,21 @@ Route::get('/update', function () {
     return view('update');
 });
 
-Auth::routes();
-
+// HomeController
+Route::get('/', 'HomeController@index')->name('home');
 Route::get('/home', 'HomeController@index')->name('home');
 
-Auth::routes();
 
-Route::get('/home', 'HomeController@index')->name('home');
+// gpController
+Route::any('showOperation', 'gpController@showOperation');
 
+
+// UserController
 Route::resource('user', 'UsersController');
-
 Route::any('manager', 'UsersController@manager');
-	
 Route::any('destroy/{id}', 'UsersController@destroy');
 Route::any('me/{id?}', 'UsersController@me');
-Route::any('adddoctor/{id?}', 'UsersController@adddoctor');
+Route::any('adddoctor', 'UsersController@adddoctor');
 Route::any('update/{id}', 'UsersController@update');
 Route::any('update_to_database/{id}', 'UsersController@update_to_database');
 Route::any('search', 'UsersController@search');
@@ -46,6 +45,14 @@ Route::any('index', 'UsersController@index');
 Route::any('adddoctor', 'UsersController@adddoctor');
 Route::any('user_login', 'UsersController@user_login');
 Route::any('patient_login', 'UsersController@patient_login');
+Route::any('login_patien', 'UsersController@login');
 
+
+// OperationController
 Route::get('/check-model','operationController@getIndex');
 Route::any('operationShow/{operation_id}','operationController@operationShow');
+
+Route::any('addrestroom', 'UsersController@addrestroom');
+Route::any('updateroom/{id}', 'UsersController@updateroom');
+Route::any('showroom/{id}', 'UsersController@showroom');
+

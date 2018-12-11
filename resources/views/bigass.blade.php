@@ -8,19 +8,24 @@
             <div class="col-md-12">
                <br><br>
               
-              <center>
-              <table class="table table-bordered table-striped">
-              <tr> <th>Your room </th>
-                <th>"{{$i->room_id}}"</th>
-              <tr>
 
              
               
               
               
+             
+             
               
+
+          <center>
+               
+               <form action="{{action('UsersController@login')}}" method="get">
+                 Enter your E-mail agian : <input type="text" name="email">
+                     
+                  <input type="submit" value="Search">
+                      </form>
 </center>
-              
+
 
                </div>
                </div>

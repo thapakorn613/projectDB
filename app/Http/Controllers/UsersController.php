@@ -6,8 +6,12 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
 
+
+
 class UsersController extends Controller
 {
+
+    private $me ;
     /**
      * Display a listing of the resource.
      *
@@ -21,40 +25,103 @@ class UsersController extends Controller
 
     }
 
+    public function login(Request $request)
+    {
+        
+        $users = DB::table('users')->get();
+        
+        foreach ($users as $eiei) {
+          
+            if($eiei->email == $request->get('email') &&password_verify($request->get('password'), $eiei->password)  )
+            {  
+                
+                $this->me = $eiei->id;
+                
+                $user = User::find($this->me);
+                
+                return view('me' ,['user' => $user]);
+            }
+        }
+        return view('auth/login');
+        //$user = User::find($request->get('email'));
+        
+        //return view('me');
+
+    }
+
     public function adddoctor(Request $request)
     {
-        $users = DB::table('surgeons')->get();
+
+        $users = DB::table('general_practice')->get();
+        
+        
+        return view('adddoctor' ,['users' => $users]);
+        
+
+    }
+
+    public function addrestroom(Request $request)
+    {
+
+        $room = DB::table('room')->get();
+        
+        
+        return view('addrestroom' ,['room' => $room]);
+        
        
-        //$user = DB::table('users')->where('id', )->first();
        
-       //echo $user->name;
+
+    }
+
+    public function updateroom(Request $request, $id)
+    {
+        $asd =  auth()->User('name');
+        $user = User::find($asd->id);
+        $room = DB::table('room')->get();
+        foreach($room as $i)
+        {
+            if($i->patient_id==$user->id)
+            {
+                $room = $i->room_id;
+               
+                return view('showroom' ,['i' => $i]);
+            }
+        }
+
+        //echo $id;
+        DB::table('room')
+            ->where('room_id', $id)
+            ->update(['status' => "busy"]);
+
+        
+       
+            $asd =  auth()->User('name');
+            $user = User::find($asd->id);
+
+        DB::table('room')
+            ->where('room_id', $id)
+            ->update(['patient_id' => $asd->id]);
+
+            return view('me' ,['user' => $user]);
+       
 
     }
 
     public function user_login()
     {
-        
-       
            return view('user_login');
-       
-        
-       
-       
     }
     public function patient_login()
     {
-        
-       
-           
-       
         return view('auth/login');
        
        
     }
 
-    public function me($id)
+    public function me()
     {
-        $user = User::find($id);
+        $asd =  auth()->User('name');
+        $user = User::find($asd->id);
         return view('me' ,['user' => $user]);
 
     }
