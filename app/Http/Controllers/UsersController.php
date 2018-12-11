@@ -4,10 +4,14 @@ namespace App\Http\Controllers;
 use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
-use Carbon\Carbon;
+
+
+
 
 class UsersController extends Controller
 {
+
+    private $me ;
     /**
      * Display a listing of the resource.
      *
@@ -21,47 +25,66 @@ class UsersController extends Controller
 
     }
 
+    public function login(Request $request)
+    {
+        
+        $users = DB::table('users')->get();
+        
+        foreach ($users as $eiei) {
+          
+            if($eiei->email == $request->get('email') &&password_verify($request->get('password'), $eiei->password)  )
+            {  
+                
+                $this->me = $eiei->id;
+                
+                $user = User::find($this->me);
+                
+                return view('me' ,['user' => $user]);
+            }
+        }
+        return view('auth/login');
+        //$user = User::find($request->get('email'));
+        
+        //return view('me');
+
+    }
+
     public function adddoctor(Request $request)
     {
-<<<<<<< HEAD
 
         $users = DB::table('general_practice')->get();
         
         
         return view('adddoctor' ,['users' => $users]);
         
-=======
-        $users = DB::table('surgeons')->get();
-       
-        //$user = DB::table('users')->where('id', )->first();
-       
-       //echo $user->name;
->>>>>>> parent of a5cfbc5... show_description_after_login
 
+    }
+
+    public function cancelroom(Request $request,$id)
+    {
+
+        DB::table('room')
+        ->where('room_id', $id)
+        ->update(['patient_id' => null]);
+        
+        DB::table('room')
+            ->where('room_id', $id)
+            ->update(['status' =>"idle"]);
+
+        
+        
+            $asd =  auth()->User('name');
+            $user = User::find($asd->id);
+        
+            return view('me' ,['user' => $user]);
     }
 
     public function addrestroom(Request $request)
     {
 
-        $room = DB::table('room')->get();
         
-        
-        return view('addrestroom' ,['room' => $room]);
-        
-       
-       
-
-    }
-
-    public function updateroom(Request $request, $id)
-    {
-<<<<<<< HEAD
-
-        $mytime = Carbon\Carbon::now();
-        echo $mytime->toDateTimeString();
+        echo date("Y-m-d h:i:s a", time());
         /*
-=======
->>>>>>> parent of 754c4df... addcancelroom
         $asd =  auth()->User('name');
         $user = User::find($asd->id);
         $room = DB::table('room')->get();
@@ -75,7 +98,6 @@ class UsersController extends Controller
             }
         }
 
-<<<<<<< HEAD
         
         return view('addrestroom' ,['room' => $room]);
         
@@ -92,8 +114,6 @@ class UsersController extends Controller
         $room = DB::table('room')->get();
         
 
-=======
->>>>>>> parent of 754c4df... addcancelroom
         //echo $id;
         DB::table('room')
             ->where('room_id', $id)
@@ -101,8 +121,7 @@ class UsersController extends Controller
 
         
        
-            $asd =  auth()->User('name');
-            $user = User::find($asd->id);
+           
 
         DB::table('room')
             ->where('room_id', $id)
@@ -124,14 +143,10 @@ class UsersController extends Controller
        
     }
 
-    public function me($id)
+    public function me()
     {
-<<<<<<< HEAD
         $asd =  auth()->User('name');
         $user = User::find($asd->id);
-=======
-        $user = User::find($id);
->>>>>>> parent of a5cfbc5... show_description_after_login
         return view('me' ,['user' => $user]);
 
     }
