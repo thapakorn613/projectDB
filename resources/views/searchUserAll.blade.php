@@ -1,3 +1,4 @@
+
 @extends('layouts.appHead')
 
 @section('content')
@@ -38,7 +39,7 @@
 <tr>
               
               <th>patian_type</th>
- <td>"{{$user->patient_type_id}}"</td>
+ <td>"{{$patient_type->name_type}}"</td>
  <tr>
               <th>operation_id</th>
                <td ><a href="{{ action('operationController@operationShow',$user->id )}}" method="get"> "{{$user->operation_id}}"</a></td>
@@ -55,7 +56,7 @@
 
           
                
-               <form action="{{action('UsersController@search')}}" method="get">
+               <form action="{{action('UsersAllController@search')}}" method="get">
                  ID: <input type="text" name="id">
                      
                   <input type="submit" value="Search">

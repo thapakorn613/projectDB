@@ -33,15 +33,13 @@ Route::any('showOperation', 'gpController@showOperation');
 Route::any('myPatient', 'gpController@myPatient');
 Route::any('mySchedule', 'gpController@mySchedule');
 
-// UserGPLoginController
-Route::prefix('usergp')->group(function(){
-    Route::get('/login', 'Auth\UserGPLoginController@showLoginForm')->name('usergp.login');
-    Route::post('/login','Auth\UserGPLoginController@login')->name('usergp.login.submit');
-    Route::get('/', 'UserGPController@index')->name('usergp.dashboard');
-});
 
-// UserController
+
 Route::resource('user', 'UsersController');
+
+Route::resource('user2', 'UsersAllController');
+
+
 Route::any('manager', 'UsersController@manager');
 Route::any('destroy/{id}', 'UsersController@destroy');
 Route::any('me/{id?}', 'UsersController@me');
@@ -59,7 +57,15 @@ Route::any('updateroom/{id}', 'UsersController@updateroom');
 Route::any('cancelroom/{id}', 'UsersController@cancelroom');
 Route::any('showroom/{id}', 'UsersController@showroom');
 
-// OperationController
+Route::any('destroy2/{id}', 'UsersAllController@destroy');
+Route::any('me2/{id?}', 'UsersAllController@me');
+Route::any('adddoctor2/{id?}', 'UsersAllController@adddoctor');
+Route::any('update2/{id}', 'UsersAllController@update');
+Route::any('update_to_database2/{id}', 'UsersAllController@update_to_database');
+Route::any('search2', 'UsersAllController@search');
+Route::any('index2', 'UsersAllController@index');
+Route::any('adddoctor2', 'UsersAllController@adddoctor');
+
 Route::get('/check-model','operationController@getIndex');
 Route::any('operationShow/{operation_id}','operationController@operationShow');
 Route::any('addrestroom', 'UsersController@addrestroom');

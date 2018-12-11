@@ -91,7 +91,7 @@ class UsersController extends Controller
         
          $operation = DB::table('operation')->where('operation_id', $user->operation_id)->first();
         
-            if( $price != null )
+            if( $operation != null )
             {
                 DB::table('presciption')
                 ->where('patient_id', $user->id)
