@@ -4,14 +4,10 @@ namespace App\Http\Controllers;
 use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
-
-
-
+use Carbon\Carbon;
 
 class UsersController extends Controller
 {
-
-    private $me ;
     /**
      * Display a listing of the resource.
      *
@@ -25,38 +21,22 @@ class UsersController extends Controller
 
     }
 
-    public function login(Request $request)
-    {
-        
-        $users = DB::table('users')->get();
-        
-        foreach ($users as $eiei) {
-          
-            if($eiei->email == $request->get('email') &&password_verify($request->get('password'), $eiei->password)  )
-            {  
-                
-                $this->me = $eiei->id;
-                
-                $user = User::find($this->me);
-                
-                return view('me' ,['user' => $user]);
-            }
-        }
-        return view('auth/login');
-        //$user = User::find($request->get('email'));
-        
-        //return view('me');
-
-    }
-
     public function adddoctor(Request $request)
     {
+<<<<<<< HEAD
 
         $users = DB::table('general_practice')->get();
         
         
         return view('adddoctor' ,['users' => $users]);
         
+=======
+        $users = DB::table('surgeons')->get();
+       
+        //$user = DB::table('users')->where('id', )->first();
+       
+       //echo $user->name;
+>>>>>>> parent of a5cfbc5... show_description_after_login
 
     }
 
@@ -82,7 +62,9 @@ class UsersController extends Controller
     public function addrestroom(Request $request)
     {
 
-       
+        $mytime = Carbon\Carbon::now();
+        echo $mytime->toDateTimeString();
+        /*
         $asd =  auth()->User('name');
         $user = User::find($asd->id);
         $room = DB::table('room')->get();
@@ -99,13 +81,14 @@ class UsersController extends Controller
         
         return view('addrestroom' ,['room' => $room]);
         
-       
+       */
        
 
     }
 
     public function updateroom(Request $request, $id)
     {
+
         $asd =  auth()->User('name');
         $user = User::find($asd->id);
         $room = DB::table('room')->get();
@@ -140,10 +123,14 @@ class UsersController extends Controller
        
     }
 
-    public function me()
+    public function me($id)
     {
+<<<<<<< HEAD
         $asd =  auth()->User('name');
         $user = User::find($asd->id);
+=======
+        $user = User::find($id);
+>>>>>>> parent of a5cfbc5... show_description_after_login
         return view('me' ,['user' => $user]);
 
     }
