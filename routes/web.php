@@ -73,4 +73,6 @@ Route::any('updateroom/{id}', 'UsersController@updateroom');
 Route::any('cancelroom/{id}', 'UsersController@cancelroom');
 Route::any('showroom/{id}', 'UsersController@showroom');
 Route::any('printciple/{id}', 'UsersController@printciple');
+Route::any('meet', 'UsersController@meet');
+Route::any('addmeet', 'UsersController@addmeet');
 
