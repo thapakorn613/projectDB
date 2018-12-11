@@ -30,7 +30,7 @@ Route::get('/home', 'HomeController@index')->name('home');
 
 // gpController
 Route::any('showOperation', 'gpController@showOperation');
-
+Route::any('myPatient', 'gpController@myPatient');
 
 // UserController
 Route::resource('user', 'UsersController');
@@ -46,14 +46,13 @@ Route::any('adddoctor', 'UsersController@adddoctor');
 Route::any('user_login', 'UsersController@user_login');
 Route::any('patient_login', 'UsersController@patient_login');
 Route::any('login_patien', 'UsersController@login');
-
+Route::any('addrestroom', 'UsersController@addrestroom');
+Route::any('updateroom/{id}', 'UsersController@updateroom');
+Route::any('cancelroom/{id}', 'UsersController@cancelroom');
+Route::any('showroom/{id}', 'UsersController@showroom');
 
 // OperationController
 Route::get('/check-model','operationController@getIndex');
 Route::any('operationShow/{operation_id}','operationController@operationShow');
 
-Route::any('addrestroom', 'UsersController@addrestroom');
-Route::any('updateroom/{id}', 'UsersController@updateroom');
-Route::any('cancelroom/{id}', 'UsersController@cancelroom');
-Route::any('showroom/{id}', 'UsersController@showroom');
 
