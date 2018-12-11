@@ -32,10 +32,11 @@
                   <td>"{{$user->patian_type_id}}"</td>
                   <tr>
                   <th>operation_id</th>
-                  <td ><a href="{{ action('operationController@operationShow',$user->id )}}" method="get"> "{{$user->operation_id}}"</a></td>
+                  <td >"{{$user->operation_id}}"</td>
                   <tr> 
                   <a href="{{action('UsersController@adddoctor',$user->id )}}" class="btn btn-primary">add_doctor</a>
                   <a href="{{action('UsersController@addrestroom',$user->id )}}" class="btn btn-danger">add_room</a>
+                  <a href="{{action('UsersController@printciple',$user->id )}}" class="btn btn-warning">printciple</a>
             </div>
       </div>
 </div>
