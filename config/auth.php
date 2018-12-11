@@ -45,6 +45,14 @@ return [
             'driver' => 'token',
             'provider' => 'users',
         ],
+        'usergp' => [
+            'driver' => 'session',
+            'provider' => 'usergps',
+        ],
+        'usergp-api' => [
+            'driver' => 'token',
+            'provider' => 'usergps',
+        ],
     ],
 
     /*
@@ -69,7 +77,10 @@ return [
             'driver' => 'eloquent',
             'model' => App\User::class,
         ],
-
+        'usergps' => [
+            'driver' => 'eloquent',
+            'model' => App\Usergp::class,
+        ],
         // 'users' => [
         //     'driver' => 'database',
         //     'table' => 'users',
@@ -96,6 +107,11 @@ return [
             'provider' => 'users',
             'table' => 'password_resets',
             'expire' => 60,
+        ],
+        'usergps' => [
+            'provider' => 'usergps',
+            'table' => 'password_resets',
+            'expire' => 15,
         ],
     ],
 

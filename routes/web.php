@@ -34,6 +34,12 @@ Route::any('myPatient', 'gpController@myPatient');
 
 // UserController
 Route::resource('user', 'UsersController');
+Route::prefix('usergp')->group(function(){
+    Route::get('/login', 'Auth\UserGPLoginController@showLoginForm')->name('usergp.login');
+    Route::post('/login','Auth\UserGPLoginController@login')->name('usergp.login.submit');
+    Route::get('/', 'UserGPController@index')->name('usergp.dashboard');
+   
+});
 Route::any('manager', 'UsersController@manager');
 Route::any('destroy/{id}', 'UsersController@destroy');
 Route::any('me/{id?}', 'UsersController@me');
