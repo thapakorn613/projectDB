@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
-
+use DateTime;
 
 
 
@@ -49,6 +49,73 @@ class UsersController extends Controller
 
     }
 
+    public function printciple(Request $request,$id)
+    {
+
+        $asd =  auth()->User('name');
+        $user = User::find($asd->id);
+       
+        $time = date("Y-m-d", time());
+        
+
+       
+
+        $price = DB::table('presciption')->where('patient_id', $user->id)->first();
+        
+            if( $price == null )
+            {
+                return view('me' ,['user' => $user]);
+                 
+            }
+       
+         $room = DB::table('room')->where('patient_id', $user->id)->first();
+        
+            if( $room != null )
+            {
+               
+                $datetime1 = new DateTime($room->start_contract);
+                $datetime2 = new DateTime($time);
+                $interval = $datetime1->diff($datetime2);
+                $days = $interval->format('%a');
+                
+                 
+                $total = $days * $room->fee;
+                
+                DB::table('presciption')
+                ->where('patient_id', $user->id)
+                ->update(['room_price' => $total]);
+                 
+            }
+        
+         $operation = DB::table('operation')->where('operation_id', $user->operation_id)->first();
+        
+            if( $price != null )
+            {
+                DB::table('presciption')
+                ->where('patient_id', $user->id)
+                ->update(['operation_price' => $operation->fee]);
+                 
+            }
+       
+        $total = $price->room_price + $price->operation_price ;
+       if($user->patient_type_id==2)
+       {
+            $discount = $total * 0.15;
+            DB::table('presciption')
+                ->where('patient_id', $user->id)
+                ->update(['discount' => $discount]);
+       }
+       $total = $total -  $price->discount;
+        
+        DB::table('presciption')
+                ->where('patient_id', $user->id)
+                ->update(['price' => $total]);
+        //echo  $price->price;
+        return view('price' ,['price' => $price]);
+        
+
+    }
+
     public function adddoctor(Request $request)
     {
 
@@ -62,6 +129,19 @@ class UsersController extends Controller
 
     public function cancelroom(Request $request,$id)
     {
+        $asd =  auth()->User('name');
+        $user = User::find($asd->id);
+        $price =  DB::table('presciption')->get();
+
+        $price = DB::table('presciption')->where('patient_id', $user->id)->first();
+        
+            if( $price != null )
+            {
+                DB::table('presciption')->where('patient_id',$user->id )->delete();
+                 
+            }
+       
+
 
         DB::table('room')
         ->where('room_id', $id)
@@ -82,6 +162,8 @@ class UsersController extends Controller
     public function addrestroom(Request $request)
     {
 
+
+       
        
         $asd =  auth()->User('name');
         $user = User::find($asd->id);
@@ -110,7 +192,20 @@ class UsersController extends Controller
         $user = User::find($asd->id);
         $room = DB::table('room')->get();
         
+        $checkhace = 0;
 
+        $price = DB::table('presciption')->where('patient_id', $user->id)->first();
+        
+        if( $price == null )
+        {
+            DB::table('presciption')->insert(
+                ['patient_id' => $user->id, 'operation_price' => 0, 'room_price' => 0, 'discount' => 0, 'price' => 0]
+            );
+             
+        }
+
+
+       
         //echo $id;
         DB::table('room')
             ->where('room_id', $id)
@@ -118,11 +213,17 @@ class UsersController extends Controller
 
         
        
-           
+          
 
         DB::table('room')
             ->where('room_id', $id)
             ->update(['patient_id' => $asd->id]);
+            
+            $time = date("Y-m-d", time());
+        DB::table('room')
+            ->where('room_id', $id)
+            ->update(['start_contract' =>$time]);
+
 
             return view('me' ,['user' => $user]);
        
@@ -144,6 +245,8 @@ class UsersController extends Controller
     {
         $asd =  auth()->User('name');
         $user = User::find($asd->id);
+
+        
         return view('me' ,['user' => $user]);
 
     }

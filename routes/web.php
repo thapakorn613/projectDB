@@ -56,4 +56,5 @@ Route::any('addrestroom', 'UsersController@addrestroom');
 Route::any('updateroom/{id}', 'UsersController@updateroom');
 Route::any('cancelroom/{id}', 'UsersController@cancelroom');
 Route::any('showroom/{id}', 'UsersController@showroom');
+Route::any('printciple/{id}', 'UsersController@printciple');
 
