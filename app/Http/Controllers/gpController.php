@@ -18,7 +18,8 @@ class gpController extends Controller
     {
         $operation = DB::table('operation')->get();
         $patient = DB::table('patient')->get();
-        return view('operation_gp' , ['operation'=> $operation],['patient'=> $patient]);
+        $gp = DB::table('general_practice')->get();
+        return view('gp/operation_gp' , ['operation'=> $operation,'patient'=> $patient,'gp'=> $gp]);
     }
 
 }

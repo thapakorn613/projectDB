@@ -9,8 +9,6 @@
     <link rel="stylesheet" href="/css/bootstrap.min.css">
 
     <style>
-    
-
     div.picture1 {
 
    background-image:url('img/index1.jpg');
@@ -55,11 +53,8 @@ background-size: cover;
 
     
    
-    <title>pam hospital</title>
+    <title>OSAS hospital</title>
   </head>
-
-
- 
 
   <body>
         <div id="app">
@@ -130,15 +125,13 @@ background-size: cover;
   
       <div class="row">
         <div class="col-10">
-            <img src="img/logo.png" width="200" height="170"  alt="">
-            <img src="img/logo_name.png" width="400" height="170" alt="">
+            <img src="img/logo.png" width="10%"  alt="">
+            <img src="img/logo_name.png" width="20 %"alt="">
         </div>
         <div class="col-2">
-
-           <img class="img-responsive pull-right" src="img/login.png" width="100" height="100"  alt="">
-           <img class="img-responsive pull-right" src="img/exit.png" width="100" height="100"  alt="">
-           <h1 class="bold text-right">tel.19991919</h1>
-           
+            <img class="img-responsive pull-right" src="img/login.png" width="20%"alt="">
+            <img class="img-responsive pull-right" src="img/exit.png" width="20%"alt="">
+            <h1 class="bold text-right">tel.19991919</h1>
         </div>
       </div>
     
@@ -154,8 +147,6 @@ background-size: cover;
 -->
 
           <div class=" mt-3">
-          
-            <br>
             <!-- Nav tabs -->
             <ul class="nav nav-tabs">
               <li class="nav-item">
