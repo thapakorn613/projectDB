@@ -60,21 +60,29 @@ class UsersController extends Controller
 
     }
 
+    public function cancelroom(Request $request,$id)
+    {
+
+        DB::table('room')
+        ->where('room_id', $id)
+        ->update(['patient_id' => null]);
+        
+        DB::table('room')
+            ->where('room_id', $id)
+            ->update(['status' =>"idle"]);
+
+        
+        
+            $asd =  auth()->User('name');
+            $user = User::find($asd->id);
+        
+            return view('me' ,['user' => $user]);
+    }
+
     public function addrestroom(Request $request)
     {
 
-        $room = DB::table('room')->get();
-        
-        
-        return view('addrestroom' ,['room' => $room]);
-        
        
-       
-
-    }
-
-    public function updateroom(Request $request, $id)
-    {
         $asd =  auth()->User('name');
         $user = User::find($asd->id);
         $room = DB::table('room')->get();
@@ -88,6 +96,21 @@ class UsersController extends Controller
             }
         }
 
+        
+        return view('addrestroom' ,['room' => $room]);
+        
+       
+       
+
+    }
+
+    public function updateroom(Request $request, $id)
+    {
+        $asd =  auth()->User('name');
+        $user = User::find($asd->id);
+        $room = DB::table('room')->get();
+        
+
         //echo $id;
         DB::table('room')
             ->where('room_id', $id)
@@ -95,8 +118,7 @@ class UsersController extends Controller
 
         
        
-            $asd =  auth()->User('name');
-            $user = User::find($asd->id);
+           
 
         DB::table('room')
             ->where('room_id', $id)
