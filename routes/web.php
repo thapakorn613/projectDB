@@ -32,7 +32,12 @@ Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 
+
+
 Route::resource('user', 'UsersController');
+
+Route::resource('user2', 'UsersAllController');
+
 
 Route::any('manager', 'UsersController@manager');
 	
@@ -44,6 +49,15 @@ Route::any('update_to_database/{id}', 'UsersController@update_to_database');
 Route::any('search', 'UsersController@search');
 Route::any('index', 'UsersController@index');
 Route::any('adddoctor', 'UsersController@adddoctor');
+
+Route::any('destroy2/{id}', 'UsersAllController@destroy');
+Route::any('me2/{id?}', 'UsersAllController@me');
+Route::any('adddoctor2/{id?}', 'UsersAllController@adddoctor');
+Route::any('update2/{id}', 'UsersAllController@update');
+Route::any('update_to_database2/{id}', 'UsersAllController@update_to_database');
+Route::any('search2', 'UsersAllController@search');
+Route::any('index2', 'UsersAllController@index');
+Route::any('adddoctor2', 'UsersAllController@adddoctor');
 
 Route::get('/check-model','operationController@getIndex');
 Route::any('operationShow/{operation_id}','operationController@operationShow');
