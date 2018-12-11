@@ -31,6 +31,7 @@ Route::get('/home', 'HomeController@index')->name('home');
 // gpController
 Route::any('showOperation', 'gpController@showOperation');
 Route::any('myPatient', 'gpController@myPatient');
+Route::any('mySchedule', 'gpController@mySchedule');
 
 // UserGPLoginController
 Route::prefix('usergp')->group(function(){

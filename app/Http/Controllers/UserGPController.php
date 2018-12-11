@@ -18,7 +18,4 @@ class UserGPController extends Controller
         return view('usergp');
     }
 
-
-   
-
 }
