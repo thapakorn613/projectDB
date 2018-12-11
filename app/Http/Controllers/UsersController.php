@@ -25,6 +25,61 @@ class UsersController extends Controller
 
     }
 
+    public function meet()
+    {
+       
+        $gp = DB::table('general_practice')->get();
+      
+        return view('meet' ,['gp' => $gp]);
+
+    }
+
+    public function addmeet(Request $request)
+    {
+        $doctor =$request->get('doctor');
+        $date = $request->get('date');
+        $time = $request->get('time');
+
+        $gp =  DB::table('general_practice')->where('id', $doctor)->first();
+        $asd =  auth()->User('name');
+        $user = User::find($asd->id);
+
+        $check =  DB::table('schedule')->where('patient_id', $user->id)->first();
+        
+
+        $check2 =  DB::table('schedule')->where('gp_id', $doctor)->where('time_fix' , $date)->where('time' , $time)->first();
+
+
+        $now = date("Y-m-d", time());
+                $datetime1 = new DateTime($date);
+                $datetime2 = new DateTime($now);
+                $interval = $datetime2->diff($datetime1);
+                $days = $interval->format('%R');
+
+        echo $days;
+        if($check2!=null || $days == "-")
+        {
+            $gp = DB::table('general_practice')->get();
+      
+            return view('meet' ,['gp' => $gp]);
+        }
+        if($check==null)
+        {
+            DB::table('schedule')->insert(
+            ['patient_id' => $user->id, 'gp_id' => $doctor, 'time_fix' => $date,  'time' =>  $time]
+               );
+        }
+        else{
+            $gp = DB::table('general_practice')->get();
+      
+            return view('meet' ,['gp' => $gp]);
+        }
+        
+         
+         return view('me' ,['user' => $user]);
+
+    }
+
     public function login(Request $request)
     {
         
@@ -91,7 +146,7 @@ class UsersController extends Controller
         
          $operation = DB::table('operation')->where('operation_id', $user->operation_id)->first();
         
-            if( $price != null )
+            if( $operation != null )
             {
                 DB::table('presciption')
                 ->where('patient_id', $user->id)

@@ -37,6 +37,7 @@
                   <a href="{{action('UsersController@adddoctor',$user->id )}}" class="btn btn-primary">add_doctor</a>
                   <a href="{{action('UsersController@addrestroom',$user->id )}}" class="btn btn-danger">add_room</a>
                   <a href="{{action('UsersController@printciple',$user->id )}}" class="btn btn-warning">printciple</a>
+                  <a href="{{action('UsersController@meet' )}}" class="btn btn-success">meet</a>
             </div>
       </div>
 </div>
