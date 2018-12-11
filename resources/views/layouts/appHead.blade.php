@@ -94,18 +94,37 @@ background-size: cover;
                                     <li class="nav-item">
                                         <a class="nav-link" href="{{ action('gpController@showOperation') }}" >{{ __('Operation') }}</a>
                                     </li>
+                                    <li class="nav-item">
+                                        <a class="nav-link" href="{{ action('gpController@myPatient') }}" >{{ __('My Patient') }}</a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a class="nav-link" href="{{ action('gpController@mySchedule') }}" >{{ __('My Schedule') }}</a>
+                                    </li>
                                     <li class="nav-item dropdown">
                                         <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
                                             {{ Auth::user()->name }} <span class="caret"></span>
                                         </a>
-        
                                         <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+                                            <a class="dropdown-item" href="#profile"
+                                               onclick="event.preventDefault();
+                                                             document.getElementById('logout-form').submit();">
+                                                {{ __('Profile') }}
+                                            </a>
+                                            <a class="dropdown-item" href="#???"
+                                               onclick="event.preventDefault();
+                                                             document.getElementById('logout-form').submit();">
+                                                {{ __('...??....') }}
+                                            </a>
+                                            <a class="dropdown-item" href="#???"
+                                               onclick="event.preventDefault();
+                                                             document.getElementById('logout-form').submit();">
+                                                {{ __('...??....') }}
+                                            </a>
                                             <a class="dropdown-item" href="{{ route('logout') }}"
                                                onclick="event.preventDefault();
                                                              document.getElementById('logout-form').submit();">
                                                 {{ __('Logout') }}
                                             </a>
-        
                                             <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
                                                 @csrf
                                             </form>
@@ -126,7 +145,7 @@ background-size: cover;
       <div class="row">
         <div class="col-10">
             <img src="img/logo.png" width="10%"  alt="">
-            <img src="img/logo_name.png" width="20 %"alt="">
+            <img src="img/logo_name.png" width="20%"alt="">
         </div>
         <div class="col-2">
             <img class="img-responsive pull-right" src="img/login.png" width="20%"alt="">
