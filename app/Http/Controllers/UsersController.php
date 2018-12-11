@@ -10,13 +10,13 @@ use DateTime;
 
 class UsersController extends Controller
 {
-
     private $me ;
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
+  
     public function index()
     {
        
@@ -239,11 +239,10 @@ class UsersController extends Controller
     {
            return view('user_login');
     }
+
     public function patient_login()
     {
-        return view('auth/login');
-       
-       
+        return view('beforeLogin');
     }
 
     public function me()

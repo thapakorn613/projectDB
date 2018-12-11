@@ -22,5 +22,19 @@ class gpController extends Controller
         $gp = DB::table('general_practice')->get();
         return view('gp/operation_gp' , ['operation'=> $operation,'patient'=> $patient,'gp'=> $gp]);
     }
+    
+    public function myPatient(Request $request)
+    {
+        $patient = DB::table('patient')->get();
+        $gp = DB::table('general_practice')->get();
+        return view('gp/myPatient' , ['patient'=> $patient,'gp'=> $gp]);
+    }
+
+    public function mySchedule(Request $request)
+    {
+        $schedule = DB::table('schedule')->get();
+        $gp = DB::table('general_practice')->get();
+        return view('gp/mySchedule' , ['schedule'=> $schedule,'gp'=> $gp]);
+    }
 
 }

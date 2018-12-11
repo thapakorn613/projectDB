@@ -37,29 +37,22 @@ class LoginController extends Controller
      */
     public function __construct()
     {
-        $this->middleware('guest')->except('logout');
+        $this->middleware('guest:web')->except('logout');
     }
 
     protected function authenticated(Request $request, User $user){
         //put your thing in here
-     
         //return redirect()->intended($this->redirectPath());
         //return redirect('/me/1');
-        
         $users = DB::table('users')->get();
-        
         foreach ($users as $eiei) {
-          
             if($eiei->email == $request->get('email')   )
             {  
-                
-                
-                
                 $user = User::find($eiei->id);
-                
                 return view('me' ,['user' => $user]);
             }
         }
+
         return view('auth/login');
     }
 }
