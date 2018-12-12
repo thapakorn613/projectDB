@@ -70,4 +70,5 @@ Route::any('showroom/{id}', 'UsersController@showroom');
 Route::any('printciple/{id}', 'UsersController@printciple');
 Route::any('meet', 'UsersController@meet');
 Route::any('addmeet', 'UsersController@addmeet');
-
+Route::any('updatedoctor/{id}', 'UsersController@updatedoctor');
+Route::any('showdoctor/{id}', 'UsersController@showdoctor');
