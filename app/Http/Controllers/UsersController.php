@@ -123,15 +123,22 @@ class UsersController extends Controller
     {
 
         $asd =  auth()->User('name');
-        $user = User::find($asd->id);
         
-        
+        $user = DB::table('patient')->where('userID', $asd->id)->first();
+        $price = DB::table('presciption')->where('patient_id', $user->id)->first();
 
-       
+        if( $price == null )
+        {
+            DB::table('presciption')->insert(
+                ['patient_id' => $user->id, 'operation_price' => 0, 'room_price' => 0, 'discount' => 0, 'price' => 0]
+            );
+             
+        }
 
        // $price = DB::table('presciption')->where('patient_id', $user->id)->first();
         //return $user->presciption()->get()->first()->operation_price;
-        $price = $user->presciption()->get()->first();
+        $price = DB::table('presciption')->where('patient_id', $user->id)->first();
+
             if( $price == null )
             {
                 $patient_type=$user->patient_type()->get()->first();
@@ -139,8 +146,8 @@ class UsersController extends Controller
                  
             }
        
-         //$room = DB::table('room')->where('patient_id', $user->id)->first();
-         $room = $user->room()->get()->first();
+         $room = DB::table('room')->where('patient_id', $user->id)->first();
+         //$room = $user->room()->get()->first();
             if( $room != null )
             {
                 $time = date("Y-m-d", time());
@@ -156,8 +163,8 @@ class UsersController extends Controller
                 ->where('patient_id', $user->id)
                 ->update(['room_price' => $total]);
             }
-         //$operation = DB::table('operation')->where('operation_id', $user->operation_id)->first();
-          $operation = $user->operation()->get()->first();
+         $operation = DB::table('operation')->where('operation_id', $user->operation_id)->first();
+         // $operation = $user->operation()->get()->first();
             if( $operation != null )
             {
                 $num1 = DB::table('anesthetists')->where('id', $operation->id_anes)->first();
@@ -187,7 +194,7 @@ class UsersController extends Controller
       
 
      // $price = DB::table('presciption')->where('patient_id', $user->id)->first();
-       $price = $user->presciption()->get()->first();
+     $price = DB::table('presciption')->where('patient_id', $user->id)->first();
        return view('price' ,['price' => $price]);
         
 
@@ -356,6 +363,8 @@ class UsersController extends Controller
     {
         $asd =  auth()->User('name');
         $user = User::find($asd->id);
+
+        
 
        // return $user;
         $patient_type=$user->patient_type()->get()->first();

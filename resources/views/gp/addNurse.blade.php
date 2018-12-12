@@ -26,8 +26,8 @@
                         for ($i = 0; $i < count($nurse); $i++) {     
                               if($nurse[$i]->operation_id == null) {?>
                                     <tr>
-                                    <td>me</td>     
-                                    <td><a href="#add anes" class="btn btn-primary">add</a></td>
+                                    <td>{{$nurse[$i]->name}}</td>     
+                                    <td><a href="{{action('gpController@addth',$nurse[$i]->id )}}" class="btn btn-primary">add</a></td>
                                     </tr>
                         <?php }}?>
 

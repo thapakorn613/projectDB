@@ -68,7 +68,7 @@ class RegisterController extends Controller
         echo $user->name;
 
         DB::table('patient')->insert(
-            ['id' => $user->id, 'name' => $user->name, 'surname' => $user->name, 'birthdate' => $user->birthday, 'blood_group' => $user->blood_group, 'age' => $user->age, 'gender' => $user->gender, 'patient_type_id' => $user->patient_type_id]
+            ['userID' => $user->id, 'name' => $user->name, 'surname' => $user->name, 'birthdate' => $user->birthday, 'blood_group' => $user->blood_group, 'age' => $user->age, 'gender' => $user->gender, 'patient_type_id' => $user->patient_type_id]
         );
         $patient_type = DB::table('patient_type')->where('patient_type_id', $user->patient_type_id)->first();
         //return view('me' ,['user' => $user]);
