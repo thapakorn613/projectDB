@@ -34,10 +34,10 @@
                   <th>operation_id</th>
                   <td >"{{$user->operation_id}}"</td>
                   <tr> 
-                  <a href="{{action('UsersController@adddoctor',$user->id )}}" class="btn btn-primary">add_doctor</a>
-                  <a href="{{action('UsersController@addrestroom',$user->id )}}" class="btn btn-danger">add_room</a>
-                  <a href="{{action('UsersController@printciple',$user->id )}}" class="btn btn-warning">printciple</a>
-                  <a href="{{action('UsersController@meet' )}}" class="btn btn-success">meet</a>
+                  <a href="{{action('UsersController@adddoctor',$user->id )}}" class="btn btn-primary">Add doctor</a>
+                  <a href="{{action('UsersController@addrestroom',$user->id )}}" class="btn btn-danger">Add room</a>
+                  <a href="{{action('UsersController@printciple',$user->id )}}" class="btn btn-warning">Presciption</a>
+                  <a href="{{action('UsersController@meet' )}}" class="btn btn-success">Meet</a>
             </div>
       </div>
 </div>
