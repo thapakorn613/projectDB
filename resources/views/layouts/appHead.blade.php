@@ -171,17 +171,15 @@ background-size: cover;
               <li class="nav-item">
                 <a class="nav-link active" data-toggle="tab" href="#home">Home</a>
               </li>
+              
               <li class="nav-item">
-                <a class="nav-link" data-toggle="tab" href="#centersAndClinics">Centers & Clinics</a>
+                <a class="nav-link" href="{{ action('pageController@center') }}">{{ __('center') }}</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" data-toggle="tab" href="#PatientCare">PatientCare</a>
+                <a class="nav-link" href="{{ action('pageController@healthExpert') }}">{{ __('healthExpert') }}</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" data-toggle="tab" href="#HealthExpert">HealthExpert</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" data-toggle="tab" href="#AboutAs">AboutAs</a>
+                <a class="nav-link" href="{{ action('pageController@aboutAs') }}">{{ __('about as') }}</a>
               </li>
             </ul>
           

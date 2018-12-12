@@ -306,7 +306,7 @@ class UsersController extends Controller
 
        // return $user;
         $patient_type=$user->patient_type()->get()->first();
-      //  return view('me' ,compact('user','patient_type'));
+        return view('me' ,compact('user','patient_type'));
 
     }
 
