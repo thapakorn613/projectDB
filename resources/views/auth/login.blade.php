@@ -64,7 +64,6 @@
                                 </a>
                             </div>
                         </div>
-                        <a href="{{action('Auth\UserGPLoginController@showLoginForm')}}" class="btn btn-primary">login General</a>
                     </form>
                 </div>
             </div>
