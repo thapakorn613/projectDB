@@ -48,22 +48,5 @@ class Handler extends ExceptionHandler
     {
         return parent::render($request, $exception);
     }
-    protected function unauthentication($request, AuthenticationException $exception)
-    {
-        if($request->expectsJson()){
-            return response()->json(['error' => 'Unauthenticated.'], 401);
-        }
-        $guard = array_get( $exception->guards(), 0);
-
-        switch ($guard) {
-            case 'usergp':
-                $login = 'usergp.login';
-                break;
-            default:
-                $login = 'login';
-                break;
-        }
-
-        return redirect()->quest(route($login));
-    }
+   
 }

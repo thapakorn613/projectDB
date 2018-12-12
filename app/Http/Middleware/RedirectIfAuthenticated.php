@@ -17,19 +17,10 @@ class RedirectIfAuthenticated
      */
     public function handle($request, Closure $next, $guard = null)
     {   
-        switch($guard){
-            case 'usergp':
-                if (Auth::guard($guard)->check()) {
-                    return redirect()->route('usergp.login');
-                }
-                break;
-            default:
-                if (Auth::guard($guard)->check()) {
-                    return redirect('login');
-                }
-                break;
+     
+        if (Auth::guard($guard)->check()) {
+                return redirect('/home');
         }
-        
 
         return $next($request);
     }

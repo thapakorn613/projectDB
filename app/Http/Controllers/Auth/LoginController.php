@@ -57,9 +57,4 @@ class LoginController extends Controller
 
         return view('auth/login');
     }
-    public function userLogout()
-    {
-        Auth::guard('web')->logout();
-        return redirect('/');
-    }
 }

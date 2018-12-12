@@ -294,6 +294,24 @@ class UsersController extends Controller
     {
         return view('auth.login');
     }
+    public function user_login(Request $request)
+    {
+        $users = DB::table('users')->get();
+        
+        foreach ($users as $eiei) {
+          
+            if($eiei->email == $request->get('email') &&password_verify($request->get('password'), $eiei->password)  )
+            {  
+                
+                $this->me = $eiei->id;
+                
+                $user = User::find($this->me);
+                
+                return view('me' ,['user' => $user]);
+            }
+        }
+        return view('auth.login');
+    }
 
     public function me()
     {

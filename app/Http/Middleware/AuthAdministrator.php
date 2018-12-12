@@ -20,18 +20,10 @@ class AuthAdministrator
                 if ( Auth::check() && Auth::user()->isAdmin() )
                     {
                     return $next($request);
-                    }
+                }
                 return redirect('/home');//????????? Admin ??? Redirect ????? URL ???
- /*
-                if (Auth::user()){
-                    if(Auth::user()->isAdmin  == "1"){
-                        return $next($request); 
-                    }else{
-                        Auth::logout();
-                        return redirect()->route('usergp.login');
-                   }
-               }
-                return redirect()->route('usergp.login'); */
+ 
+               
            
         
     }

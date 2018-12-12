@@ -37,12 +37,6 @@ Route::any('nurse/showOperation', 'staffController@operation_Nurse');
 Route::any('surgeons/showOperation', 'staffController@operation_Surgeons');
 Route::any('anesthetists/showOperation', 'staffController@operation_Anesthetists');
 
-// UserGPLoginController
-Route::prefix('usergp')->group(function(){
-    Route::get('/login', 'Auth\UserGPLoginController@showLoginForm')->name('usergp.login');
-    Route::post('/login','Auth\UserGPLoginController@login')->name('usergp.login.submit');
-    Route::get('/', 'UserGPController@index')->name('usergp.dashboard');
-});
 
 // UserController
 Route::resource('user', 'UsersController');
