@@ -26,7 +26,6 @@ Route::get('/update', function () {
 // HomeController
 Route::get('/', 'HomeController@index')->name('home');
 Route::get('/home', 'HomeController@index')->name('home');
-Route::get('users/logout','Auth\LoginController@userlogout')->name('user.logout');
 
 // gpController
 Route::any('showOperation', 'gpController@showOperation');
@@ -43,7 +42,6 @@ Route::prefix('usergp')->group(function(){
     Route::get('/login', 'Auth\UserGPLoginController@showLoginForm')->name('usergp.login');
     Route::post('/login','Auth\UserGPLoginController@login')->name('usergp.login.submit');
     Route::get('/', 'UserGPController@index')->name('usergp.dashboard');
-    Route::get('/logout', 'UserGPController@logout')->name('user.logout');
 });
 
 // UserController

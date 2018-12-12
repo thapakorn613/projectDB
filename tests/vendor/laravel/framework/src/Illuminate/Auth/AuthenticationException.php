@@ -34,6 +34,7 @@ class AuthenticationException extends Exception
 
         $this->guards = $guards;
         $this->redirectTo = $redirectTo;
+        
     }
 
     /**
