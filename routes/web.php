@@ -12,8 +12,6 @@
 */
 
 Auth::routes();
-
-
 /*
 Route::get('/createAccount', function () {
     return view('createAccount');
@@ -23,23 +21,28 @@ Route::get('/update', function () {
     return view('update');
 });
 
+// chooseController
+Route::any('/chooseLoginForm', 'chooseLoginController@LoginForm');
+
 // HomeController
 Route::get('/', 'HomeController@index')->name('home');
 Route::get('/home', 'HomeController@index')->name('home');
-
+Route::get('users/logout','Auth\LoginController@userlogout')->name('user.logout');
 
 // gpController
 Route::any('showOperation', 'gpController@showOperation');
 Route::any('myPatient', 'gpController@myPatient');
+Route::any('mySchedule', 'gpController@mySchedule');
+
+// staffController
+Route::any('nurse/showOperation', 'staffController@operation_Nurse');
+Route::any('surgeons/showOperation', 'staffController@operation_Surgeons');
+Route::any('anesthetists/showOperation', 'staffController@operation_Anesthetists');
+
+
 
 // UserController
 Route::resource('user', 'UsersController');
-Route::prefix('usergp')->group(function(){
-    Route::get('/login', 'Auth\UserGPLoginController@showLoginForm')->name('usergp.login');
-    Route::post('/login','Auth\UserGPLoginController@login')->name('usergp.login.submit');
-    Route::get('/', 'UserGPController@index')->name('usergp.dashboard');
-   
-});
 Route::any('manager', 'UsersController@manager');
 Route::any('destroy/{id}', 'UsersController@destroy');
 Route::any('me/{id?}', 'UsersController@me');
@@ -60,10 +63,11 @@ Route::any('showroom/{id}', 'UsersController@showroom');
 // OperationController
 Route::get('/check-model','operationController@getIndex');
 Route::any('operationShow/{operation_id}','operationController@operationShow');
-
 Route::any('addrestroom', 'UsersController@addrestroom');
 Route::any('updateroom/{id}', 'UsersController@updateroom');
 Route::any('cancelroom/{id}', 'UsersController@cancelroom');
 Route::any('showroom/{id}', 'UsersController@showroom');
 Route::any('printciple/{id}', 'UsersController@printciple');
+Route::any('meet', 'UsersController@meet');
+Route::any('addmeet', 'UsersController@addmeet');
 

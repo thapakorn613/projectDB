@@ -1,5 +1,7 @@
 @extends('layouts.appHead')
 
+
+
 @section('content')
 <div class="container">
     <div class="row justify-content-center">
@@ -62,7 +64,6 @@
                                 </a>
                             </div>
                         </div>
-                        <a href="{{action('UsersController@user_login')}}" class="btn btn-primary">login user</a>
                     </form>
                 </div>
             </div>
