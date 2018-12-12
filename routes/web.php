@@ -12,8 +12,6 @@
 */
 
 Auth::routes();
-
-
 /*
 Route::get('/createAccount', function () {
     return view('createAccount');
@@ -23,22 +21,28 @@ Route::get('/update', function () {
     return view('update');
 });
 
+Route::get('/center', function () {
+    return view('center');
+});
+// chooseController
+Route::any('/chooseLoginForm', 'chooseLoginController@LoginForm');
+
 // HomeController
 Route::get('/', 'HomeController@index')->name('home');
 Route::get('/home', 'HomeController@index')->name('home');
-
+Route::get('users/logout','Auth\LoginController@userlogout')->name('user.logout');
 
 // gpController
 Route::any('showOperation', 'gpController@showOperation');
 Route::any('myPatient', 'gpController@myPatient');
 Route::any('mySchedule', 'gpController@mySchedule');
 
-// UserGPLoginController
-Route::prefix('usergp')->group(function(){
-    Route::get('/login', 'Auth\UserGPLoginController@showLoginForm')->name('usergp.login');
-    Route::post('/login','Auth\UserGPLoginController@login')->name('usergp.login.submit');
-    Route::get('/', 'UserGPController@index')->name('usergp.dashboard');
-});
+// staffController
+Route::any('nurse/showOperation', 'staffController@operation_Nurse');
+Route::any('surgeons/showOperation', 'staffController@operation_Surgeons');
+Route::any('anesthetists/showOperation', 'staffController@operation_Anesthetists');
+
+
 
 // UserController
 Route::resource('user', 'UsersController');
@@ -69,5 +73,9 @@ Route::any('showroom/{id}', 'UsersController@showroom');
 Route::any('printciple/{id}', 'UsersController@printciple');
 Route::any('meet', 'UsersController@meet');
 Route::any('addmeet', 'UsersController@addmeet');
+
+Route::any('center', 'pageController@center');
+Route::any('healthExpert', 'pageController@healthExpert');
+Route::any('aboutAs', 'pageController@aboutAs');
 Route::any('updatedoctor/{id}', 'UsersController@updatedoctor');
 Route::any('showdoctor/{id}', 'UsersController@showdoctor');

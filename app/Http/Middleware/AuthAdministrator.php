@@ -16,11 +16,14 @@ class AuthAdministrator
      */
     public function handle($request, Closure $next, $guard = null)
     {
-        if ( Auth::check() && Auth::user()->isAdmin() )
-        {
-            return $next($request);
-        }
- 
-        return redirect('/home');//????????? Admin ??? Redirect ????? URL ???
+       
+                if ( Auth::check() && Auth::user()->isAdmin() )
+                    {
+                    return $next($request);
+                    }
+                return redirect('/home');//????????? Admin ??? Redirect ????? URL ???
+           
+           
+        
     }
 }

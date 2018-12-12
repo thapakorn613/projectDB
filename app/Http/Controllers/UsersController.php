@@ -16,6 +16,14 @@ class UsersController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+
+
+
+     
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
   
     public function index(Request $request,$id)
     {
@@ -59,10 +67,11 @@ class UsersController extends Controller
         $doctor =$request->get('doctor');
         $date = $request->get('date');
         $time = $request->get('time');
-
-        $gp =  DB::table('general_practice')->where('id', $doctor)->first();
-        $asd =  auth()->User('name');
+         $asd =  auth()->User('name');
         $user = User::find($asd->id);
+        $gp =  DB::table('general_practice')->where('id', $doctor)->first();
+       // $gp = $user->general_practice()->get()->first();
+       
 
         $check =  DB::table('schedule')->where('patient_id', $user->id)->first();
         
@@ -95,9 +104,8 @@ class UsersController extends Controller
             return view('meet' ,['gp' => $gp]);
         }
         
-         
-         return view('me' ,['user' => $user]);
-
+        $patient_type=$user->patient_type()->get()->first();
+                return view('me' ,compact('user','patient_type'));
     }
 
     public function login(Request $request)
@@ -114,7 +122,8 @@ class UsersController extends Controller
                 
                 $user = User::find($this->me);
                 
-                return view('me' ,['user' => $user]);
+                $patient_type=$user->patient_type()->get()->first();
+                return view('me' ,compact('user','patient_type'));
             }
         }
         return view('auth/login');
@@ -129,22 +138,23 @@ class UsersController extends Controller
 
         $asd =  auth()->User('name');
         $user = User::find($asd->id);
-       
         
         
 
        
 
-        $price = DB::table('presciption')->where('patient_id', $user->id)->first();
-        
+       // $price = DB::table('presciption')->where('patient_id', $user->id)->first();
+        //return $user->presciption()->get()->first()->operation_price;
+        $price = $user->presciption()->get()->first();
             if( $price == null )
             {
-                return view('me' ,['user' => $user]);
+                $patient_type=$user->patient_type()->get()->first();
+                return view('me' ,compact('user','patient_type'));
                  
             }
        
-         $room = DB::table('room')->where('patient_id', $user->id)->first();
-        
+         //$room = DB::table('room')->where('patient_id', $user->id)->first();
+         $room = $user->room()->get()->first();
             if( $room != null )
             {
                 $time = date("Y-m-d", time());
@@ -159,13 +169,9 @@ class UsersController extends Controller
                 DB::table('presciption')
                 ->where('patient_id', $user->id)
                 ->update(['room_price' => $total]);
-
-               
-                 
             }
-        
-         $operation = DB::table('operation')->where('operation_id', $user->operation_id)->first();
-        
+         //$operation = DB::table('operation')->where('operation_id', $user->operation_id)->first();
+          $operation = $user->operation()->get()->first();
             if( $operation != null )
             {
                 DB::table('presciption')
@@ -190,8 +196,9 @@ class UsersController extends Controller
                 ->update(['price' => $total]);
       
 
-       $price = DB::table('presciption')->where('patient_id', $user->id)->first();
-        return view('price' ,['price' => $price]);
+     // $price = DB::table('presciption')->where('patient_id', $user->id)->first();
+       $price = $user->presciption()->get()->first();
+       return view('price' ,['price' => $price]);
         
 
     }
@@ -222,8 +229,8 @@ class UsersController extends Controller
         $user = User::find($asd->id);
         $price =  DB::table('presciption')->get();
 
-        $price = DB::table('presciption')->where('patient_id', $user->id)->first();
-        
+        //$price = DB::table('presciption')->where('patient_id', $user->id)->first();
+        $price = $user->presciption()->get()->first();
             if( $price != null )
             {
                 DB::table('presciption')->where('patient_id',$user->id )->delete();
@@ -245,15 +252,12 @@ class UsersController extends Controller
             $asd =  auth()->User('name');
             $user = User::find($asd->id);
         
-            return view('me' ,['user' => $user]);
+            $patient_type=$user->patient_type()->get()->first();
+        return view('me' ,compact('user','patient_type'));
     }
 
     public function addrestroom(Request $request)
     {
-
-
-       
-       
         $asd =  auth()->User('name');
         $user = User::find($asd->id);
         $room = DB::table('room')->get();
@@ -281,8 +285,8 @@ class UsersController extends Controller
         
         $checkhace = 0;
 
-        $price = DB::table('presciption')->where('patient_id', $user->id)->first();
-        
+        //$price = DB::table('presciption')->where('patient_id', $user->id)->first();
+        $price = $user->presciption()->get()->first();
         if( $price == null )
         {
             DB::table('presciption')->insert(
@@ -308,19 +312,14 @@ class UsersController extends Controller
             ->update(['start_contract' =>$time]);
 
 
-            return view('me' ,['user' => $user]);
+            $patient_type=$user->patient_type()->get()->first();
+            return view('me' ,compact('user','patient_type'));
        
 
     }
-
-    public function user_login()
-    {
-           return view('user_login');
-    }
-
     public function patient_login()
     {
-        return view('beforeLogin');
+        return view('auth.login');
     }
 
     public function me()
@@ -328,8 +327,9 @@ class UsersController extends Controller
         $asd =  auth()->User('name');
         $user = User::find($asd->id);
 
-        
-        return view('me' ,['user' => $user]);
+       // return $user;
+        $patient_type=$user->patient_type()->get()->first();
+        return view('me' ,compact('user','patient_type'));
 
     }
 
@@ -482,7 +482,8 @@ class UsersController extends Controller
     public function search(Request $request)
     {
         $user = User::find($request->get('id'));
-      return view('search' ,compact('user','id'));
+        $patient_type=$user->patient_type;
+      return view('search' ,compact('user','patient_type'));
     }
 
 

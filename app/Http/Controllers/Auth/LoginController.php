@@ -7,6 +7,7 @@ use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
 use App\User;
+use Auth;
 
 class LoginController extends Controller
 {
@@ -23,6 +24,7 @@ class LoginController extends Controller
 
     use AuthenticatesUsers;
 
+    
     /**
      * Where to redirect users after login.
      *
@@ -37,22 +39,40 @@ class LoginController extends Controller
      */
     public function __construct()
     {
-        $this->middleware('guest:web')->except('logout');
+        $this->middleware('guest')->except('logout');
     }
 
     protected function authenticated(Request $request, User $user){
         //put your thing in here
         //return redirect()->intended($this->redirectPath());
         //return redirect('/me/1');
-        $users = DB::table('users')->get();
+
+        
+       /* $users = DB::table('users')->get();
         foreach ($users as $eiei) {
             if($eiei->email == $request->get('email')   )
             {  
                 $user = User::find($eiei->id);
-                return view('me' ,['user' => $user]);
+               //return view('me' ,['user' => $user]);
+              
+                
+               $patient_type=$user->patient_type;
+                return view('me' ,compact('user','patient_type'));
+                
             }
-        }
-
-        return view('auth/login');
+        }*/
+        $userMain = User::find($user->id);
+        $patient_type=$userMain->patient_type()->get()->first();
+       
+        //return $patient_type;
+      
+      return view('me' ,compact('user','patient_type'));
+       
+      /*  $user = users::find($request->get('id'));
+        $patient_type=$user->patient_type();
+      //  echo $patient_type;
+      //  echo $user;
+        return view('me' ,compact('user','patient_type'));*/
     }
+    
 }
