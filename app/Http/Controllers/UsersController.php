@@ -145,7 +145,7 @@ class UsersController extends Controller
             {
                 $time = date("Y-m-d", time());
                 $datetime1 = new DateTime($room->start_contract);
-                $datetime2 = new DateTime($time);
+                $datetime2 = new DateTime($room->end_contract);
                 $interval = $datetime1->diff($datetime2);
                 $days = $interval->format('%a');
                 
@@ -255,21 +255,27 @@ class UsersController extends Controller
         }
         
 
-        
-        return view('addrestroom' ,['room' => $room]);
+        $user = DB::table('users')->get();
+        return view('addrestroom' ,['room' => $room],['user' => $user]);
         
        
        
 
     }
 
-    public function updateroom(Request $request, $id)
+    public function updateroom(Request $request)
     {
-        $asd =  auth()->User('name');
-        $user = User::find($asd->id);
-        $room = DB::table('room')->get();
+       
         
-        $checkhace = 0;
+
+
+        $patient =$request->get('name');
+        $room = $request->get('room');
+        $date = $request->get('date');
+        $user = User::find($patient);
+       
+
+       // echo $patient;
 
         //$price = DB::table('presciption')->where('patient_id', $user->id)->first();
         $price = $user->presciption()->get()->first();
@@ -280,6 +286,40 @@ class UsersController extends Controller
             );
              
         }
+
+        $check = DB::table('room')->where('patient_id', $user->id)->first();
+        if($check!=null)
+        {
+            $room = DB::table('room')->get();
+            $user = DB::table('users')->get();
+        return view('addrestroom' ,['room' => $room],['user' => $user]);
+        }
+
+        DB::table('room')
+            ->where('room_id', $room)
+            ->update(['status' => "busy"]);
+        
+       
+           
+        DB::table('room')
+            ->where('room_id',$room)
+            ->update(['patient_id' => $user->id]);
+
+         $time = date("Y-m-d", time());
+        DB::table('room')
+            ->where('room_id', $room)
+            ->update(['start_contract' =>$time]);
+
+            DB::table('room')
+            ->where('room_id', $room)
+            ->update(['end_contract' =>$date]);
+
+            $asd =  auth()->User('name');
+            $user = User::find($asd->id);
+            $patient_type = DB::table('patient_type')->where('patient_type_id', $user->patient_type_id)->first();
+            return view('me' ,['user' => $user],['patient_type' => $patient_type]);
+
+
     }
         public function updatedoctor(Request $request, $id)
     {
@@ -388,9 +428,26 @@ class UsersController extends Controller
         $user->operation_id = $request->get('operation_id');
      
         $user->save();
+        if($user->typeID==1)
+        {
+            DB::table('patient')
+            ->where('id', $user->id)
+            ->update(['id' => $user->id, 'name' => $user->name, 'surname' => $user->name, 'birthdate' => $user->birthday, 'blood_group' => $user->blood_group, 'age' => $user->age, 'gender' => $user->gender, 'patient_type_id' => $user->patient_type_id]
+        );
+        }
+
+        
+
         $users = DB::table('users')->get();
         return view('admin.patient' ,['users' => $users]);
     }
+
+
+
+
+
+
+
     public function manager()
     {
        // return view('create');

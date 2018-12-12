@@ -70,7 +70,7 @@
                                         @endif
                                     </div>
                                 </div>
-        
+                                @if($user->typeID!=3)
 
                                 <div class="form-group row">
                                     <label for="name" class="col-md-4 col-form-label text-md-right">{{ __('operation_id') }}</label>
@@ -81,7 +81,7 @@
                                        
                                     </div>
                                 </div>
-        
+                                    @endif
         
         
                                 <div class="form-group row">
@@ -114,7 +114,7 @@
         
         
         
-        
+                                @if($user->typeID==1||$user->typeID==2)
         
         
                                       <div class="form-group row">
@@ -130,7 +130,7 @@
                                         @endif
                                     </div>
                                 </div>
-        
+                                @endif
         
         
         

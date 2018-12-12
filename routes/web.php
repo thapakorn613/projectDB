@@ -73,7 +73,7 @@ Route::any('showroom/{id}', 'UsersController@showroom');
 Route::get('/check-model','operationController@getIndex');
 Route::any('operationShow/{operation_id}','operationController@operationShow');
 Route::any('addrestroom', 'UsersController@addrestroom');
-Route::any('updateroom/{id}', 'UsersController@updateroom');
+Route::any('updateroom', 'UsersController@updateroom');
 Route::any('cancelroom/{id}', 'UsersController@cancelroom');
 Route::any('showroom/{id}', 'UsersController@showroom');
 Route::any('printciple/{id}', 'UsersController@printciple');
@@ -85,3 +85,4 @@ Route::any('healthExpert', 'pageController@healthExpert');
 Route::any('aboutAs', 'pageController@aboutAs');
 Route::any('updatedoctor/{id}', 'UsersController@updatedoctor');
 Route::any('showdoctor/{id}', 'UsersController@showdoctor');
+
