@@ -1,5 +1,4 @@
 @extends('layouts.appHead2')
-
 @section('content')
 
 

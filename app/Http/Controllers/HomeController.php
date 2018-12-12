@@ -24,6 +24,6 @@ class HomeController extends Controller
     public function index(Request $request)
     {
         $users = User::all()->toArray();
-       return view('home' , compact('users'));
+        return view('home' , compact('users'));
     }
 }
