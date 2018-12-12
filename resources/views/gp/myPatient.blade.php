@@ -12,12 +12,11 @@
             </div>
       </div>
 </div>
-      
 <div class="container">
       <div class="row">
                   <?php
                     for ( $i=0;$i<count($gp);$i++) {
-                              if(Auth::user()->userID() == $gp[$i]->userID){ #
+                              if(Auth::user()->id() == $gp[$i]->userID){ #
                                     $num = $gp[$i]->id;
                                     for ( $j=0;$j<count($patient);$j++) {
                                           if($patient[$j]->gp_id == $num){                                                ?> 
