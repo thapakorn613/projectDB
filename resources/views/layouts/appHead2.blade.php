@@ -60,6 +60,9 @@ background-size: cover;
         <div id="app">
                 <nav class="navbar navbar-expand-md navbar-light navbar-laravel">
                     <div class="container">
+                        <a class="navbar-brand" href="{{ url('/') }}">
+                            {{ config('app.name', 'Laravel') }}
+                        </a>
                         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
                             <span class="navbar-toggler-icon"></span>
                         </button>
@@ -85,46 +88,38 @@ background-size: cover;
                                 @else
                                     @if (Auth::user()->isAdmin() == '1')
                                     <li class="nav-item">
-                                        <a class="nav-link" href="{{ action('UsersController@index',1) }}" >{{ __('Maneger') }}</a>
+                                        <a class="nav-link" href="{{ action('UsersController@manager') }}" >{{ __('Maneger') }}</a>
                                     </li>
                                     @endif
-                                    @if (Auth::user()->typeID() == '1')  <!-- เป็น Patient-->
-                                        <li class="nav-item">
-                                                <a class="nav-link" href="{{ action('UsersController@me') }}" >{{ __('Profile') }}</a>
-                                        </li>
-                                    @endif
-                                    @if (Auth::user()->typeID() != '1')
-                                        <li class="nav-item">
-                                            @if (Auth::user()->typeID() == '2')
-                                                <a class="nav-link" href="{{ action('gpController@showOperation') }}" >{{ __('Operation') }}</a>
-                                            @endif
-                                            @if (Auth::user()->typeID() == '3')
-                                                <a class="nav-link" href="{{ action('staffController@operation_Anesthetists') }}" >{{ __('Operation') }}</a>
-                                            @endif
-                                            @if (Auth::user()->typeID() == '4')
-                                                <a class="nav-link" href="{{ action('staffController@operation_Nurse') }}" >{{ __('Operation') }}</a>
-                                            @endif
-                                            @if (Auth::user()->typeID() == '5')
-                                                <a class="nav-link" href="{{ action('staffController@operation_Surgeons') }}" >{{ __('Operation') }}</a>
-                                            @endif
-                                        </li>
-                                        @if (Auth::user()->typeID() == '2')
-                                            <li class="nav-item">
-                                                <a class="nav-link" href="{{ action('gpController@myPatient') }}" >{{ __('My Patient') }}</a>
-                                            </li>
-                                            <li class="nav-item">
-                                                <a class="nav-link" href="{{ action('gpController@mySchedule') }}" >{{ __('My Schedule') }}</a>
-                                            </li>
-                                        @endif
-                                    @endif
+                                    <li class="nav-item">
+                                        <a class="nav-link" href="{{ action('gpController@showOperation') }}" >{{ __('Operation') }}</a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a class="nav-link" href="{{ action('gpController@myPatient') }}" >{{ __('My Patient') }}</a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a class="nav-link" href="{{ action('gpController@mySchedule') }}" >{{ __('My Schedule') }}</a>
+                                    </li>
                                     <li class="nav-item dropdown">
                                         <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
                                             {{ Auth::user()->name }} <span class="caret"></span>
                                         </a>
                                         <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                                            
-                                            
-                                            
+                                            <a class="dropdown-item" href="#profile"
+                                               onclick="event.preventDefault();
+                                                             document.getElementById('logout-form').submit();">
+                                                {{ __('Profile') }}
+                                            </a>
+                                            <a class="dropdown-item" href="#???"
+                                               onclick="event.preventDefault();
+                                                             document.getElementById('logout-form').submit();">
+                                                {{ __('...??....') }}
+                                            </a>
+                                            <a class="dropdown-item" href="#???"
+                                               onclick="event.preventDefault();
+                                                             document.getElementById('logout-form').submit();">
+                                                {{ __('...??....') }}
+                                            </a>
                                             <a class="dropdown-item" href="{{ route('logout') }}"
                                                onclick="event.preventDefault();
                                                              document.getElementById('logout-form').submit();">
@@ -173,19 +168,22 @@ background-size: cover;
           <div class=" mt-3">
             <!-- Nav tabs -->
             <ul class="nav nav-tabs">
-              <li class="nav-item">
-                <a class="nav-link active" data-toggle="tab" href="#home">Home</a>
-              </li>
-              
-              <li class="nav-item">
-                <a class="nav-link" href="{{ action('pageController@center') }}">{{ __('center') }}</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="{{ action('pageController@healthExpert') }}">{{ __('healthExpert') }}</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="{{ action('pageController@aboutAs') }}">{{ __('about as') }}</a>
-              </li>
+            <li class="nav-item">
+                                        <a class="nav-link" href="{{ action('UsersController@index',1) }}" >{{ __('patient') }}</a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a class="nav-link" href="{{ action('UsersController@index',2) }}" >{{ __('student') }}</a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a class="nav-link" href="{{ action('UsersController@index',3) }}" >{{ __('gp') }}</a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a class="nav-link" href="{{ action('UsersController@index',4) }}" >{{ __('serguen') }}</a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a class="nav-link" href="{{ action('UsersController@index',5) }}" >{{ __('admin') }}</a>
+                                    </li>
+
             </ul>
           
             <!-- Tab panes -->
