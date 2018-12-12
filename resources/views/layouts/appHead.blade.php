@@ -169,7 +169,7 @@ background-size: cover;
             <!-- Nav tabs -->
             <ul class="nav nav-tabs">
               <li class="nav-item">
-                <a class="nav-link active" data-toggle="tab" href="#home">Home</a>
+                <a class="nav-link" href="{{ action('HomeController@index') }}">{{ __('home') }}</a>
               </li>
               
               <li class="nav-item">
