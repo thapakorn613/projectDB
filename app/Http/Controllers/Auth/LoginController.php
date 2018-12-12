@@ -43,33 +43,8 @@ class LoginController extends Controller
     }
 
     protected function authenticated(Request $request, User $user){
-        //put your thing in here
-        //return redirect()->intended($this->redirectPath());
-        //return redirect('/me/1');
-
         
-       /* $users = DB::table('users')->get();
-        foreach ($users as $eiei) {
-            if($eiei->email == $request->get('email')   )
-            {  
-                $user = User::find($eiei->id);
-               //return view('me' ,['user' => $user]);
-              
-                
-               $patient_type=$user->patient_type;
-                return view('me' ,compact('user','patient_type'));
-                
-            }
-        }*/
-        $userMain = User::find($user->id);
-        $patient_type=$userMain->patient_type()->get()->first();
-        return view('me' ,compact('user','patient_type'));
-        
-      /*  $user = users::find($request->get('id'));
-        $patient_type=$user->patient_type();
-      //  echo $patient_type;
-      //  echo $user;
-        return view('me' ,compact('user','patient_type'));*/
+        return view('home' ,compact('user'));
     }
     
 }

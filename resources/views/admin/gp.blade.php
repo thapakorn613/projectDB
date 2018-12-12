@@ -1,4 +1,5 @@
 @extends('layouts.appHeadAdmin')
+
 @section('content')
 
 
@@ -10,12 +11,15 @@
                   <tr> <th>first name</th>
                   <th>edit</th>
                   <th> delete</th>
-                  @foreach($users as $row) <tr>
-                        <td>{{$row['name']}}</td>
-                        <td><a href="{{action('UsersController@update',$row['id'])}}" class="btn btn-primary">Edit</a></td>
-                        <td><a href="{{action('UsersController@destroy',$row['id'])}}" onClick="return confirm('Delete This account?')" class="btn btn-danger">delete</a></td>
+                  @for($i=0; $i < count($users);$i++)
+                   @if($users[$i]->typeID==3)
+                  <tr>
+                        <td>{{$users[$i]->name}}</td>
+                        <td><a href="{{action('UsersController@update',$users[$i]->id)}}" class="btn btn-primary">Edit</a></td>
+                        <td><a href="{{action('UsersController@destroy',$users[$i]->id)}}" onClick="return confirm('Delete This account?')" class="btn btn-danger">delete</a></td>
                         </tr>
-                  @endforeach
+                       @endif
+                  @endfor
                   </table>
             </div>
       </div>

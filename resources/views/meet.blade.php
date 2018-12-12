@@ -4,8 +4,10 @@
 
 
 <div class="container">
-      <div class="row">
-            <div class="col-md-12">
+   
+           
+        
+        
                
             <form method="POST" action="{{action('UsersController@addmeet' )}}">
                                 @csrf
@@ -25,7 +27,9 @@
                 </span>
             @endif
         </div>
-    </div>
+    
+
+
 
     <label for="name" class="col-md-2 col-form-label text-md-right">{{ __('date') }}</label>
         
@@ -53,10 +57,13 @@
                 </span>
             @endif
         </div>
+
+
+
     </div>
               
     
-    <div class="form-group row mb-0">
+    <div class="form-group row mb-4">
                                     <div class="col-md-6 offset-md-4">
                                         <button type="submit" class="btn btn-success">
                                             {{ __('update') }}
@@ -69,8 +76,8 @@
 </form>
 
                </div>
-               </div>
-               </div>
+
+               
 
              
                @stop

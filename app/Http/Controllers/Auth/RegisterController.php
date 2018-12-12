@@ -6,7 +6,9 @@ use App\User;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Http\Request;
 use Illuminate\Foundation\Auth\RegistersUsers;
+use Illuminate\Support\Facades\DB;
 
 class RegisterController extends Controller
 {
@@ -59,6 +61,36 @@ class RegisterController extends Controller
             'password' => ['required', 'string', 'min:6', 'confirmed'],
         ]);
     }
+    protected function registered(Request $request, $user)
+    {
+        //
+        
+        //echo $user;
+        //return view('me');
+        //$userss = User::find($user);
+        //return view('users.index',$user);
+        #return redirect('/me');
+        //return redirect()->route('me', [$user]);
+        /*return redirect()->action(
+            '/@me', ['id' => 1]
+        );*/
+        $one = 1;
+        $asd =  $request->get('email');
+        $user = DB::table('users')->where('email', $asd)->first();
+        echo $user->name;
+
+        DB::table('patient')->insert(
+            ['id' => $user->id, 'name' => $user->name, 'surname' => $user->name, 'birthdate' => $user->birthday, 'blood_group' => $user->blood_group, 'age' => $user->age, 'gender' => $user->gender, 'patient_type_id' => $user->patient_type_id]
+        );
+         
+        //DB::table('patient_type')->insert(
+          //  ['name_type' => $user->id,'discount' => 100]
+        //);
+
+        $patient_type = DB::table('patient_type')->where('patient_type_id', $user->patient_type_id)->first();
+        //return view('me' ,['user' => $user]);
+       // return view('me' ,['user' => $user],['patient_type' => $patient_type]);
+    }
 
     /**
      * Create a new user instance after a valid registration.
@@ -67,8 +99,10 @@ class RegisterController extends Controller
      * @return \App\User
      */
     protected function create(array $data)
+    
     {
-        return User::create([
+       
+       return User::create([
             'name' => $data['name'],
             'email' => $data['email'],
             'password' => Hash::make($data['password']),
@@ -77,9 +111,12 @@ class RegisterController extends Controller
              'blood_group' => $data['blood_group'],
              'age' => $data['age'],
              'gender' => $data['gender'],
+            // 'typeID'=>$data['typeID'],
 
 
             
         ]);
     }
+
+    
 }

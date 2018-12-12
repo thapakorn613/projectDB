@@ -17,29 +17,35 @@ class UsersController extends Controller
      * @return \Illuminate\Http\Response
      */
 
-
-
-     
     public function __construct()
     {
         $this->middleware('auth');
     }
   
-    public function index()
+    public function index(Request $request,$id)
     {
        
-        $users = User::all()->toArray();
-        return view('admin.manager' , compact('users'));
-
+        $users = DB::table('users')->get();
+        if($id==1){
+            return view('admin.patient' ,['users' => $users]);
+        }
+        if($id==2){
+            return view('admin.student' , ['users' => $users]);
+        }
+        if($id==3){
+            return view('admin.gp' , ['users' => $users]);
+        }
+        if($id==4){
+            return view('admin.sergeon' , ['users' => $users]);
+        }
+        if($id==5){
+            return view('admin.admin' , ['users' => $users]);
+        }
     }
 
-    public function meet()
-    {
-       
+    public function meet(){
         $gp = DB::table('general_practice')->get();
-      
         return view('meet' ,['gp' => $gp]);
-
     }
 
     public function addmeet(Request $request)
@@ -47,10 +53,11 @@ class UsersController extends Controller
         $doctor =$request->get('doctor');
         $date = $request->get('date');
         $time = $request->get('time');
-
-        $gp =  DB::table('general_practice')->where('id', $doctor)->first();
-        $asd =  auth()->User('name');
+         $asd =  auth()->User('name');
         $user = User::find($asd->id);
+        $gp =  DB::table('general_practice')->where('id', $doctor)->first();
+       // $gp = $user->general_practice()->get()->first();
+       
 
         $check =  DB::table('schedule')->where('patient_id', $user->id)->first();
         
@@ -186,6 +193,15 @@ class UsersController extends Controller
     {
 
         $users = DB::table('general_practice')->get();
+        $asd =  auth()->User('name');
+        $user = User::find($asd->id);
+    
+        $check = DB::table('general_practice')->where('patient_id', $user->id)->first();
+        if($check!=null)
+        {
+            return view('showdoctor' ,['i' => $check]);
+        }
+        
         
         
         return view('adddoctor' ,['users' => $users]);
@@ -231,15 +247,13 @@ class UsersController extends Controller
         $asd =  auth()->User('name');
         $user = User::find($asd->id);
         $room = DB::table('room')->get();
-        foreach($room as $i)
+
+        $check = DB::table('room')->where('patient_id', $user->id)->first();
+        if($check!=null)
         {
-            if($i->patient_id==$user->id)
-            {
-                $room = $i->room_id;
-               
-                return view('showroom' ,['i' => $i]);
-            }
+            return view('showroom' ,['i' => $check]);
         }
+        
 
         
         return view('addrestroom' ,['room' => $room]);
@@ -266,25 +280,21 @@ class UsersController extends Controller
             );
              
         }
-
-
-       
-        //echo $id;
-        DB::table('room')
-            ->where('room_id', $id)
-            ->update(['status' => "busy"]);
-
+    }
+        public function updatedoctor(Request $request, $id)
+    {
+        $asd =  auth()->User('name');
+        $user = User::find($asd->id);
         
-       
-          
+        
+        //echo $id;
+        DB::table('general_practice')
+            ->where('id', $id)
+            ->update(['patient_id' => $user->id]);
 
-        DB::table('room')
-            ->where('room_id', $id)
-            ->update(['patient_id' => $asd->id]);
-            
             $time = date("Y-m-d", time());
-        DB::table('room')
-            ->where('room_id', $id)
+         DB::table('general_practice')
+            ->where('id', $id)
             ->update(['start_contract' =>$time]);
 
 
@@ -303,7 +313,7 @@ class UsersController extends Controller
         $asd =  auth()->User('name');
         $user = User::find($asd->id);
 
-        
+       // return $user;
         $patient_type=$user->patient_type()->get()->first();
         return view('me' ,compact('user','patient_type'));
 
@@ -378,8 +388,8 @@ class UsersController extends Controller
         $user->operation_id = $request->get('operation_id');
      
         $user->save();
-        $users = User::all()->toArray();
-       return view('index' , compact('users'));
+        $users = DB::table('users')->get();
+        return view('admin.patient' ,['users' => $users]);
     }
     public function manager()
     {
@@ -403,9 +413,48 @@ class UsersController extends Controller
         //
        // return view('create');
        $user = User::find($id);
+        
+       $check = DB::table('room')->where('patient_id', $id)->first();
+        if($check!=null)
+        {
+            DB::table('room')
+            ->where('patient_id', $id)
+            ->update(['patient_id' =>"idle"]);
+            
+            
+             DB::table('room')
+             ->where('patient_id', $id)
+             ->update(['patient_id' => null]);
+       
+        }
+       
+        $check2 = DB::table('general_practice')->where('patient_id', $id)->first();
+        if($check2!=null)
+        {
+        
+            DB::table('general_practice')
+       ->where('patient_id', $id)
+       ->update(['patient_id' => null]);
+        
+        }
+
+        $check3 = DB::table('schedule')->where('patient_id', $id)->first();
+        if($check3!=null)
+        {
+            DB::table('schedule')->where('patient_id', '=', $id)->delete();
+        }
+
+        $check4 = DB::table('presciption')->where('patient_id', $id)->first();
+        if($check4!=null)
+        {
+       DB::table('presciption')->where('patient_id', '=', $id)->delete();
+        }
+
+
        $user->delete();
-      $users = User::all()->toArray();
-       return view('index' , compact('users'));
+
+       $users = DB::table('users')->get();
+       return view('admin.patient' ,['users' => $users]);
       //dd($id);
 
     }
