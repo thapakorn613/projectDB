@@ -1,5 +1,5 @@
-@extends('layouts.appHead')
-
+@extends('layouts.appHead2')
+@extends('layouts.appHead2')
 @section('content')
 
 
