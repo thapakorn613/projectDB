@@ -60,9 +60,6 @@ background-size: cover;
         <div id="app">
                 <nav class="navbar navbar-expand-md navbar-light navbar-laravel">
                     <div class="container">
-                        <a class="navbar-brand" href="{{ url('/') }}">
-                            {{ config('app.name', 'Laravel') }}
-                        </a>
                         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
                             <span class="navbar-toggler-icon"></span>
                         </button>
@@ -88,38 +85,14 @@ background-size: cover;
                                 @else
                                     @if (Auth::user()->isAdmin() == '1')
                                     <li class="nav-item">
-                                        <a class="nav-link" href="{{ action('UsersController@manager') }}" >{{ __('Maneger') }}</a>
+                                        <a class="nav-link" href="{{ action('UsersController@index',1) }}" >{{ __('Maneger') }}</a>
                                     </li>
                                     @endif
-                                    <li class="nav-item">
-                                        <a class="nav-link" href="{{ action('gpController@showOperation') }}" >{{ __('Operation') }}</a>
-                                    </li>
-                                    <li class="nav-item">
-                                        <a class="nav-link" href="{{ action('gpController@myPatient') }}" >{{ __('My Patient') }}</a>
-                                    </li>
-                                    <li class="nav-item">
-                                        <a class="nav-link" href="{{ action('gpController@mySchedule') }}" >{{ __('My Schedule') }}</a>
-                                    </li>
                                     <li class="nav-item dropdown">
                                         <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
                                             {{ Auth::user()->name }} <span class="caret"></span>
                                         </a>
                                         <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                                            <a class="dropdown-item" href="#profile"
-                                               onclick="event.preventDefault();
-                                                             document.getElementById('logout-form').submit();">
-                                                {{ __('Profile') }}
-                                            </a>
-                                            <a class="dropdown-item" href="#???"
-                                               onclick="event.preventDefault();
-                                                             document.getElementById('logout-form').submit();">
-                                                {{ __('...??....') }}
-                                            </a>
-                                            <a class="dropdown-item" href="#???"
-                                               onclick="event.preventDefault();
-                                                             document.getElementById('logout-form').submit();">
-                                                {{ __('...??....') }}
-                                            </a>
                                             <a class="dropdown-item" href="{{ route('logout') }}"
                                                onclick="event.preventDefault();
                                                              document.getElementById('logout-form').submit();">
@@ -172,16 +145,16 @@ background-size: cover;
                                         <a class="nav-link" href="{{ action('UsersController@index',1) }}" >{{ __('patient') }}</a>
                                     </li>
                                     <li class="nav-item">
-                                        <a class="nav-link" href="{{ action('UsersController@index',2) }}" >{{ __('student') }}</a>
+                                        <a class="nav-link" href="{{ action('UsersController@index',2) }}" >{{ __('Genaral Practice') }}</a>
                                     </li>
                                     <li class="nav-item">
-                                        <a class="nav-link" href="{{ action('UsersController@index',3) }}" >{{ __('gp') }}</a>
+                                        <a class="nav-link" href="{{ action('UsersController@index',3) }}" >{{ __('Anesthetists') }}</a>
                                     </li>
                                     <li class="nav-item">
-                                        <a class="nav-link" href="{{ action('UsersController@index',4) }}" >{{ __('serguen') }}</a>
+                                        <a class="nav-link" href="{{ action('UsersController@index',4) }}" >{{ __('Nurse') }}</a>
                                     </li>
                                     <li class="nav-item">
-                                        <a class="nav-link" href="{{ action('UsersController@index',5) }}" >{{ __('admin') }}</a>
+                                        <a class="nav-link" href="{{ action('UsersController@index',5) }}" >{{ __('Surgeons') }}</a>
                                     </li>
 
             </ul>

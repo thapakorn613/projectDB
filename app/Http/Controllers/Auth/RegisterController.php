@@ -111,6 +111,7 @@ class RegisterController extends Controller
              'blood_group' => $data['blood_group'],
              'age' => $data['age'],
              'gender' => $data['gender'],
+            // 'typeID'=>$data['typeID'],
 
 
             

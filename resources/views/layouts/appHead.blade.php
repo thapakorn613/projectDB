@@ -50,8 +50,6 @@ background-size: cover;
   margin-top: -85px;
 }
     </style>
-
-    
    
     <title>OSAS hospital</title>
   </head>
@@ -123,8 +121,7 @@ background-size: cover;
                                         </a>
                                         <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
                                             
-                                            
-                                            
+                        
                                             <a class="dropdown-item" href="{{ route('logout') }}"
                                                onclick="event.preventDefault();
                                                              document.getElementById('logout-form').submit();">
@@ -174,7 +171,7 @@ background-size: cover;
             <!-- Nav tabs -->
             <ul class="nav nav-tabs">
               <li class="nav-item">
-                <a class="nav-link active" data-toggle="tab" href="#home">Home</a>
+                <a class="nav-link" href="{{ action('HomeController@index') }}">{{ __('home') }}</a>
               </li>
               
               <li class="nav-item">
@@ -186,6 +183,10 @@ background-size: cover;
               <li class="nav-item">
                 <a class="nav-link" href="{{ action('pageController@aboutAs') }}">{{ __('about as') }}</a>
               </li>
+              <form action="{{action('UsersController@search',1)}}" method="get">
+                        ID: <input type="text" name="id">
+                        <input type="submit" value="Search">
+                </form>
             </ul>
           
             <!-- Tab panes -->

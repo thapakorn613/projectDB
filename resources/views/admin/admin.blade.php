@@ -1,4 +1,4 @@
-@extends('layouts.appHead2')
+@extends('layouts.appHeadAdmin')
 
 @section('content')
 
@@ -21,10 +21,6 @@
                        @endif
                   @endfor
                   </table>
-                  <form action="{{action('UsersController@search',1)}}" method="get">
-                        ID: <input type="text" name="id">
-                        <input type="submit" value="Search">
-                  </form>
             </div>
       </div>
 </div>
