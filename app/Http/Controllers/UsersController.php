@@ -16,6 +16,10 @@ class UsersController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+
+
+
+     
     public function __construct()
     {
         $this->middleware('auth');
@@ -79,9 +83,8 @@ class UsersController extends Controller
             return view('meet' ,['gp' => $gp]);
         }
         
-         
-         return view('me' ,['user' => $user]);
-
+        $patient_type=$user->patient_type()->get()->first();
+                return view('me' ,compact('user','patient_type'));
     }
 
     public function login(Request $request)
@@ -114,7 +117,6 @@ class UsersController extends Controller
 
         $asd =  auth()->User('name');
         $user = User::find($asd->id);
-       
         
         
 
@@ -226,10 +228,6 @@ class UsersController extends Controller
 
     public function addrestroom(Request $request)
     {
-
-
-       
-       
         $asd =  auth()->User('name');
         $user = User::find($asd->id);
         $room = DB::table('room')->get();
