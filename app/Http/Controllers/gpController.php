@@ -39,16 +39,22 @@ class gpController extends Controller
 
     public function addAnes(Request $request)
     {
-        return view('gp/addAnes');
+        $anes = DB::table('anesthetists')->get();
+        $operation = DB::table('operation')->get();
+        return view('gp/addAnes', ['anes'=> $anes,'operation'=> $operation]);
     }
     public function addSurgeons(Request $request)
     {
-        return view('gp/addSurgeons');
+        $surgeons = DB::table('surgeons')->get();
+        $operation = DB::table('operation')->get();
+        return view('gp/addSurgeons', ['surgeons'=> $surgeons,'operation'=> $operation]);
     }
     
     public function addNurse(Request $request)
     {
-        return view('gp/addNurse');
+        $nurse = DB::table('nurse')->get();
+        $operation = DB::table('operation')->get();
+        return view('gp/addNurse', ['nurse'=> $nurse,'operation'=> $operation]);
     }
 
 
