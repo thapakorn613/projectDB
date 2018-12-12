@@ -53,6 +53,7 @@ Route::any('anesthetists/showOperation', 'staffController@operation_Anesthetists
 
 // UserController
 Route::resource('user', 'UsersController');
+Route::any('viewDoctor', 'UsersController@viewDoctor');
 Route::any('manager', 'UsersController@manager');
 Route::any('destroy/{id}', 'UsersController@destroy');
 Route::any('me/{id?}', 'UsersController@me');
@@ -76,7 +77,7 @@ Route::any('addrestroom', 'UsersController@addrestroom');
 Route::any('updateroom', 'UsersController@updateroom');
 Route::any('cancelroom/{id}', 'UsersController@cancelroom');
 Route::any('showroom/{id}', 'UsersController@showroom');
-Route::any('printciple/{id}', 'UsersController@printciple');
+Route::any('presciption/{id}', 'UsersController@printciple');
 Route::any('meet', 'UsersController@meet');
 Route::any('addmeet', 'UsersController@addmeet');
 

@@ -4,6 +4,15 @@
 <div class="container">
       <div class="row">
             <div class="col-md-10 text-center">
+                  <tr>
+                  <th>List Schedule of : {{Auth::user()->name}} {{Auth::user()->surname}}</th></tr>
+            </div>
+      </div>
+</div>
+<br>
+<div class="container">
+      <div class="row">
+            <div class="col-md-10 text-center">
                   <table class="table table-bordered table-striped">
                         <tr>
                               <th>Schedule ID</th>

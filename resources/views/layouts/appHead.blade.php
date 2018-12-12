@@ -87,11 +87,12 @@ background-size: cover;
                                     </li>
                                     @endif
                                     @if (Auth::user()->typeID() == '1')  <!-- เป็น Patient-->
-                                        <li class="nav-item">
-                                                <a class="nav-link" href="{{ action('UsersController@me') }}" >{{ __('Profile') }}</a>
-                                        </li>
+                                        
                                         <li class="nav-item">
                                                 <a class="nav-link" href="{{ action('UsersController@mySchedule') }}" >{{ __('mySchedule') }}</a>
+                                        </li>
+                                        <li class="nav-item">
+                                                <a class="nav-link" href="{{ action('UsersController@me') }}" >{{ __('Profile') }}</a>
                                         </li>
                                     @endif
                                     @if (Auth::user()->typeID() != '1')
@@ -107,6 +108,9 @@ background-size: cover;
                                             @endif
                                             @if (Auth::user()->typeID() == '5')
                                                 <a class="nav-link" href="{{ action('staffController@operation_Surgeons') }}" >{{ __('Operation') }}</a>
+                                                <li class="nav-item">
+                                                    <a class="nav-link" href="{{ action('UsersController@me') }}" >{{ __('Profile') }}</a>
+                                                </li>
                                             @endif
                                         </li>
                                         @if (Auth::user()->typeID() == '2')
@@ -151,7 +155,7 @@ background-size: cover;
   
       <div class="row">
         <div class="col-10">
-            <img src="img/logo.png" width="10%"  alt="">
+            <img src="img/logo.png" href="{{ action('HomeController@index') }}" width="10%"  alt="">
             <img src="img/logo_name.png" width="20%"alt="">
         </div>
         <div class="col-2">
@@ -172,7 +176,7 @@ background-size: cover;
         </nav>
 -->
 
-          <div class=" mt-3">
+          <div class=" mt-8">
             <!-- Nav tabs -->
             <ul class="nav nav-tabs">
               <li class="nav-item">
@@ -188,9 +192,8 @@ background-size: cover;
               <li class="nav-item">
                 <a class="nav-link" href="{{ action('pageController@aboutAs') }}">{{ __('about as') }}</a>
               </li>
-              
-              <form action="{{action('UsersController@search',1)}}" method="get">
-                        ID: <input type="text" name="id">
+              <form action="{{action('UsersController@search',1)}}" method="get" class="col-md-right">
+                        ID  <input type="text" name="id">
                   
                         <input class="btn btn-primary" type="submit" value="Search">
                 </form>
