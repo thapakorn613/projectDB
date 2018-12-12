@@ -180,6 +180,15 @@ class UsersController extends Controller
     {
 
         $users = DB::table('general_practice')->get();
+        $asd =  auth()->User('name');
+        $user = User::find($asd->id);
+    
+        $check = DB::table('general_practice')->where('patient_id', $user->id)->first();
+        if($check!=null)
+        {
+            return view('showdoctor' ,['i' => $check]);
+        }
+        
         
         
         return view('adddoctor' ,['users' => $users]);
@@ -228,15 +237,13 @@ class UsersController extends Controller
         $asd =  auth()->User('name');
         $user = User::find($asd->id);
         $room = DB::table('room')->get();
-        foreach($room as $i)
+
+        $check = DB::table('room')->where('patient_id', $user->id)->first();
+        if($check!=null)
         {
-            if($i->patient_id==$user->id)
-            {
-                $room = $i->room_id;
-               
-                return view('showroom' ,['i' => $i]);
-            }
+            return view('showroom' ,['i' => $check]);
         }
+        
 
         
         return view('addrestroom' ,['room' => $room]);
@@ -263,25 +270,21 @@ class UsersController extends Controller
             );
              
         }
-
-
-       
-        //echo $id;
-        DB::table('room')
-            ->where('room_id', $id)
-            ->update(['status' => "busy"]);
-
+    }
+        public function updatedoctor(Request $request, $id)
+    {
+        $asd =  auth()->User('name');
+        $user = User::find($asd->id);
         
-       
-          
+        
+        //echo $id;
+        DB::table('general_practice')
+            ->where('id', $id)
+            ->update(['patient_id' => $user->id]);
 
-        DB::table('room')
-            ->where('room_id', $id)
-            ->update(['patient_id' => $asd->id]);
-            
             $time = date("Y-m-d", time());
-        DB::table('room')
-            ->where('room_id', $id)
+         DB::table('general_practice')
+            ->where('id', $id)
             ->update(['start_contract' =>$time]);
 
 
