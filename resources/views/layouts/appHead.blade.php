@@ -187,9 +187,11 @@ background-size: cover;
               <li class="nav-item">
                 <a class="nav-link" href="{{ action('pageController@aboutAs') }}">{{ __('about as') }}</a>
               </li>
+              
               <form action="{{action('UsersController@search',1)}}" method="get">
                         ID: <input type="text" name="id">
-                        <input type="submit" value="Search">
+                  
+                        <input class="btn btn-primary" type="submit" value="Search">
                 </form>
             </ul>
           
