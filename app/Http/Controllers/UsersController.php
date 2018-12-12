@@ -47,10 +47,11 @@ class UsersController extends Controller
         $doctor =$request->get('doctor');
         $date = $request->get('date');
         $time = $request->get('time');
-
-        $gp =  DB::table('general_practice')->where('id', $doctor)->first();
-        $asd =  auth()->User('name');
+         $asd =  auth()->User('name');
         $user = User::find($asd->id);
+        $gp =  DB::table('general_practice')->where('id', $doctor)->first();
+       // $gp = $user->general_practice()->get()->first();
+       
 
         $check =  DB::table('schedule')->where('patient_id', $user->id)->first();
         
@@ -303,9 +304,9 @@ class UsersController extends Controller
         $asd =  auth()->User('name');
         $user = User::find($asd->id);
 
-        
+       // return $user;
         $patient_type=$user->patient_type()->get()->first();
-        return view('me' ,compact('user','patient_type'));
+      //  return view('me' ,compact('user','patient_type'));
 
     }
 
