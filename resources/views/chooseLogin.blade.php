@@ -8,7 +8,6 @@
             <div class="card">
                 <div class="card-header">{{ __('Login as patient') }}</div><br>
                         <a href="{{route('login')}}" class="btn btn-primary">login Patient</a><br>
-                       
                     </form>
                 </div>
             </div>

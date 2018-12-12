@@ -91,6 +91,7 @@ background-size: cover;
                                         <a class="nav-link" href="{{ action('UsersController@manager') }}" >{{ __('Maneger') }}</a>
                                     </li>
                                     @endif
+                                    @if (Auth::user()->userType() == 'genaral_practice')
                                     <li class="nav-item">
                                         <a class="nav-link" href="{{ action('gpController@showOperation') }}" >{{ __('Operation') }}</a>
                                     </li>
@@ -100,6 +101,7 @@ background-size: cover;
                                     <li class="nav-item">
                                         <a class="nav-link" href="{{ action('gpController@mySchedule') }}" >{{ __('My Schedule') }}</a>
                                     </li>
+                                    @endif
                                     <li class="nav-item dropdown">
                                         <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
                                             {{ Auth::user()->name }} <span class="caret"></span>
