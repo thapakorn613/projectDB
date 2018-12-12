@@ -35,7 +35,9 @@
                   <td >"{{$user->operation_id}}"</td>
                   <tr> 
                   <a href="{{action('UsersController@adddoctor',$user->id )}}" class="btn btn-primary">Add doctor</a>
+            @if($user->typeID==5)
                   <a href="{{action('UsersController@addrestroom',$user->id )}}" class="btn btn-danger">Add room</a>
+                  @endif
                   <a href="{{action('UsersController@printciple',$user->id )}}" class="btn btn-warning">Presciption</a>
                   <a href="{{action('UsersController@meet' )}}" class="btn btn-success">Meet</a>
             </div>

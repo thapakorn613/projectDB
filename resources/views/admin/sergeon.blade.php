@@ -9,13 +9,13 @@
                   <br><br> 
                   <table class="table table-bordered table-striped">
                   <tr> <th>first name</th>
-                  <th>edit</th>
+                  
                   <th> delete</th>
                   @for($i=0; $i < count($users);$i++)
                    @if($users[$i]->typeID==4)
                   <tr>
                         <td>{{$users[$i]->name}}</td>
-                        <td><a href="{{action('UsersController@update',$users[$i]->id)}}" class="btn btn-primary">Edit</a></td>
+                      
                         <td><a href="{{action('UsersController@destroy',$users[$i]->id)}}" onClick="return confirm('Delete This account?')" class="btn btn-danger">delete</a></td>
                         </tr>
                        @endif
