@@ -163,7 +163,7 @@ class UsersController extends Controller
                 $num1 = DB::table('anesthetists')->where('id', $operation->id_anes)->first();
                 $num2 = DB::table('surgeons')->where('id', $operation->id_surgeons)->first();
                 $num3 = DB::table('nurse')->where('id', $operation->id_nurse)->first();
-                $total = ($num1->fee_per_hour+$num2->fee_per_hour+$num3->fee_per_hour)*$operation->fee;
+                $total = (($num1->fee_per_hour+$num2->fee_per_hour+$num3->fee_per_hour)*$operation->numOfHour)+$operation->fee;
                 DB::table('presciption')
                 ->where('patient_id', $user->id)
                 ->update(['operation_price' => $total]);
