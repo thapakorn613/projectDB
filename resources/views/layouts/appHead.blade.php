@@ -94,9 +94,11 @@ background-size: cover;
                                     <li class="nav-item">
                                         <a class="nav-link" href="{{ action('gpController@showOperation') }}" >{{ __('Operation') }}</a>
                                     </li>
+                                    @if(Auth::user()->general_practice())
                                     <li class="nav-item">
                                         <a class="nav-link" href="{{ action('gpController@myPatient') }}" >{{ __('My Patient') }}</a>
                                     </li>
+                                    @endif
                                     <li class="nav-item">
                                         <a class="nav-link" href="{{ action('gpController@mySchedule') }}" >{{ __('My Schedule') }}</a>
                                     </li>
