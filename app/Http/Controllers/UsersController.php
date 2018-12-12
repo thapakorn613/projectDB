@@ -22,6 +22,20 @@ class UsersController extends Controller
         $this->middleware('auth');
     }
   
+    public function mySchedule(Request $request)
+    {
+        $schedule = DB::table('schedule')->get();
+        $patient = DB::table('patient')->get();
+        return view('mySchedulePatient' , ['schedule'=> $schedule,'patient'=> $patient]);
+    }
+    public function viewDoctor(Request $request)
+    {
+        $gp = DB::table('general_practice')->get();
+        $patient = DB::table('patient')->get();
+        return view('patient/viewDoctor' , ['gp'=> $gp,'patient'=> $patient]);
+    }
+
+
     public function index(Request $request,$id)
     {
        
@@ -123,7 +137,6 @@ class UsersController extends Controller
     {
 
         $asd =  auth()->User('name');
-        
         $user = DB::table('patient')->where('userID', $asd->id)->first();
         $price = DB::table('presciption')->where('patient_id', $user->id)->first();
 
@@ -134,7 +147,6 @@ class UsersController extends Controller
             );
              
         }
-
        // $price = DB::table('presciption')->where('patient_id', $user->id)->first();
         //return $user->presciption()->get()->first()->operation_price;
         $price = DB::table('presciption')->where('patient_id', $user->id)->first();
@@ -363,11 +375,8 @@ class UsersController extends Controller
     {
         $asd =  auth()->User('name');
         $user = User::find($asd->id);
-
-        
-
-       // return $user;
         $patient_type=$user->patient_type()->get()->first();
+        
         return view('me' ,compact('user','patient_type'));
 
     }

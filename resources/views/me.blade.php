@@ -31,9 +31,7 @@
                   <th>patient_type</th>
                   <td>"{{$patient_type->name_type}}"</td>
                   <tr>
-                  <th>operation_id</th>
-                  <td >"{{$user->operation_id}}"</td>
-                  <tr> 
+                  
                   <a href="{{action('UsersController@adddoctor',$user->id )}}" class="btn btn-primary">Add doctor</a>
             @if($user->typeID==5)
                   <a href="{{action('UsersController@addrestroom',$user->id )}}" class="btn btn-danger">Add room</a>

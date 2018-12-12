@@ -87,6 +87,10 @@ background-size: cover;
                                     </li>
                                     @endif
                                     @if (Auth::user()->typeID() == '1')  <!-- เป็น Patient-->
+                                        
+                                        <li class="nav-item">
+                                                <a class="nav-link" href="{{ action('UsersController@mySchedule') }}" >{{ __('mySchedule') }}</a>
+                                        </li>
                                         <li class="nav-item">
                                                 <a class="nav-link" href="{{ action('UsersController@me') }}" >{{ __('Profile') }}</a>
                                         </li>
@@ -104,9 +108,10 @@ background-size: cover;
                                             @endif
                                             @if (Auth::user()->typeID() == '5')
                                                 <a class="nav-link" href="{{ action('staffController@operation_Surgeons') }}" >{{ __('Operation') }}</a>
-                                              
-                                                <a class="nav-link" href="{{ action('UsersController@me') }}" >{{ __('Profile') }}</a>
-                                       
+
+                                                <li class="nav-item">
+                                                    <a class="nav-link" href="{{ action('UsersController@me') }}" >{{ __('Profile') }}</a>
+                                                </li>
                                             @endif
                                         </li>
                                         @if (Auth::user()->typeID() == '2')
@@ -118,9 +123,7 @@ background-size: cover;
                                             </li>
                                         @endif
                                     @endif
-                                    <li class="nav-item">
-                                        <a class="nav-link" href="{{ action('gpController@mySchedule') }}" >{{ __('My Schedule') }}</a>
-                                    </li>
+                                    
 
                                     <li class="nav-item dropdown">
                                         <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
@@ -153,7 +156,7 @@ background-size: cover;
   
       <div class="row">
         <div class="col-10">
-            <img src="img/logo.png" width="10%"  alt="">
+            <img src="img/logo.png" href="{{ action('HomeController@index') }}" width="10%"  alt="">
             <img src="img/logo_name.png" width="20%"alt="">
         </div>
         <div class="col-2">
@@ -174,7 +177,7 @@ background-size: cover;
         </nav>
 -->
 
-          <div class=" mt-3">
+          <div class=" mt-8">
             <!-- Nav tabs -->
             <ul class="nav nav-tabs">
               <li class="nav-item">
@@ -190,9 +193,10 @@ background-size: cover;
               <li class="nav-item">
                 <a class="nav-link" href="{{ action('pageController@aboutAs') }}">{{ __('about as') }}</a>
               </li>
-              <form action="{{action('UsersController@search',1)}}" method="get">
-                        ID: <input type="text" name="id">
-                        <input type="submit" value="Search">
+              <form action="{{action('UsersController@search',1)}}" method="get" class="col-md-right">
+                        ID  <input type="text" name="id">
+                  
+                        <input class="btn btn-primary" type="submit" value="Search">
                 </form>
             </ul>
           
