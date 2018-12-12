@@ -15,3 +15,4 @@ class patient_type extends Model
    }
 
 }
+ 

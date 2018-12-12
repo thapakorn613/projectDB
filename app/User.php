@@ -38,4 +38,20 @@ class User extends Authenticatable
     public function patient_type(){
         return $this->belongsTo('App\patient_type','patient_type_id','patient_type_id');
     }
+
+    public function operation(){
+        return $this->hasOne('App\operation','operation_id','operation_id');
+    }
+
+    public function general_practice(){
+        return $this->belongsTo('App\general_practice','id','id');
+    }
+
+    public function presciption(){
+        return $this->hasMany('App\presciption','patient_id','id');
+    }
+
+    public function room(){
+        return $this->hasOne('App\room','patient_id','id');
+    }
 }
