@@ -37,4 +37,19 @@ class gpController extends Controller
         return view('gp/mySchedule' , ['schedule'=> $schedule,'gp'=> $gp]);
     }
 
+    public function addAnes(Request $request)
+    {
+        return view('gp/addAnes');
+    }
+    public function addSurgeons(Request $request)
+    {
+        return view('gp/addSurgeons');
+    }
+    
+    public function addNurse(Request $request)
+    {
+        return view('gp/addNurse');
+    }
+
+
 }

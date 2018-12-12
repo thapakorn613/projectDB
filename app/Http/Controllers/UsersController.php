@@ -431,7 +431,6 @@ class UsersController extends Controller
         $check2 = DB::table('general_practice')->where('patient_id', $id)->first();
         if($check2!=null)
         {
-        
             DB::table('general_practice')
        ->where('patient_id', $id)
        ->update(['patient_id' => null]);
