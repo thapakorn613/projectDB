@@ -29,22 +29,15 @@
                                                       <th>Operation ID</th>
                                                       <th>Room ID</th>
                                                       <th>Fee</th>
-                                                </tr>
-                                                <tr>
-                                                      <th>{{$operation[$j]->operation_id}}</th>
-                                                      <th>{{$operation[$j]->operation_room_id}}</th>
-                                                      <th>{{$operation[$j]->fee}}</th>
-                                                </tr></table>
-                                          </div>
-                                          <div class="col-md-10 text-center">
-                                                <table class="table table-bordered table-striped">
-                                                <tr>
                                                       <th>Patient ID</th>
                                                       <th>Anesthetists ID</th>
                                                       <th>Surgeons ID</th>
                                                       <th>Nurse ID</th>
                                                 </tr>
                                                 <tr>
+                                                      <th>{{$operation[$j]->operation_id}}</th>
+                                                      <th>{{$operation[$j]->operation_room_id}}</th>
+                                                      <th>{{$operation[$j]->fee}}</th>
                                                       <th>{{$operation[$j]->id_user}} : {{$patient[$i]->name}} {{$patient[$i]->surname}}</th>
                                                       <th>{{$operation[$j]->id_anes}}</th>
                                                       <th>{{$operation[$j]->id_surgeons}}</th>
@@ -55,4 +48,9 @@
                   <?php }}}} ?>
       </div>
 </div>
+<center>
+<a href="{{ action('gpController@addAnes') }}" class="btn btn-primary">Add Anesthetist</a>
+<a href="{{ action('gpController@addSurgeons') }}" class="btn btn-primary">Add Surgeons</a>
+<a href="{{ action('gpController@addNurse') }}" class="btn btn-primary">Add Nurse</a>
+</center>
 @stop

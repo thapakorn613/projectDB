@@ -50,6 +50,8 @@ background-size: cover;
   margin-top: -85px;
 }
     </style>
+
+    
    
     <title>OSAS hospital</title>
   </head>
@@ -86,46 +88,11 @@ background-size: cover;
                                         <a class="nav-link" href="{{ action('UsersController@index',1) }}" >{{ __('Maneger') }}</a>
                                     </li>
                                     @endif
-                                    @if (Auth::user()->typeID() == '1')  <!-- เป็น Patient-->
-                                        <li class="nav-item">
-                                                <a class="nav-link" href="{{ action('UsersController@me') }}" >{{ __('Profile') }}</a>
-                                        </li>
-                                    @endif
-                                    @if (Auth::user()->typeID() != '1')
-                                        <li class="nav-item">
-                                            @if (Auth::user()->typeID() == '2') <!-- เป็น gp-->
-                                                <a class="nav-link" href="{{ action('gpController@showOperation') }}" >{{ __('Operation') }}</a>
-                                            @endif
-                                            @if (Auth::user()->typeID() == '3')
-                                                <a class="nav-link" href="{{ action('staffController@operation_Anesthetists') }}" >{{ __('Operation') }}</a>
-                                            @endif
-                                            @if (Auth::user()->typeID() == '4')
-                                                <a class="nav-link" href="{{ action('staffController@operation_Nurse') }}" >{{ __('Operation') }}</a>
-                                            @endif
-                                            @if (Auth::user()->typeID() == '5')
-                                                <a class="nav-link" href="{{ action('staffController@operation_Surgeons') }}" >{{ __('Operation') }}</a>
-                                            @endif
-                                        </li>
-                                        @if (Auth::user()->typeID() == '2')
-                                            <li class="nav-item">
-                                                <a class="nav-link" href="{{ action('gpController@myPatient') }}" >{{ __('My Patient') }}</a>
-                                            </li>
-                                            <li class="nav-item">
-                                                <a class="nav-link" href="{{ action('gpController@mySchedule') }}" >{{ __('My Schedule') }}</a>
-                                            </li>
-                                        @endif
-                                    @endif
-                                    <li class="nav-item">
-                                        <a class="nav-link" href="{{ action('gpController@mySchedule') }}" >{{ __('My Schedule') }}</a>
-                                    </li>
-
                                     <li class="nav-item dropdown">
                                         <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
                                             {{ Auth::user()->name }} <span class="caret"></span>
                                         </a>
                                         <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                                            
-                        
                                             <a class="dropdown-item" href="{{ route('logout') }}"
                                                onclick="event.preventDefault();
                                                              document.getElementById('logout-form').submit();">
@@ -174,23 +141,22 @@ background-size: cover;
           <div class=" mt-3">
             <!-- Nav tabs -->
             <ul class="nav nav-tabs">
-              <li class="nav-item">
-                <a class="nav-link" href="{{ action('HomeController@index') }}">{{ __('home') }}</a>
-              </li>
-              
-              <li class="nav-item">
-                <a class="nav-link" href="{{ action('pageController@center') }}">{{ __('center') }}</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="{{ action('pageController@healthExpert') }}">{{ __('healthExpert') }}</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="{{ action('pageController@aboutAs') }}">{{ __('about as') }}</a>
-              </li>
-              <form action="{{action('UsersController@search',1)}}" method="get">
-                        ID: <input type="text" name="id">
-                        <input type="submit" value="Search">
-                </form>
+            <li class="nav-item">
+                                        <a class="nav-link" href="{{ action('UsersController@index',1) }}" >{{ __('patient') }}</a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a class="nav-link" href="{{ action('UsersController@index',2) }}" >{{ __('Genaral Practice') }}</a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a class="nav-link" href="{{ action('UsersController@index',3) }}" >{{ __('Anesthetists') }}</a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a class="nav-link" href="{{ action('UsersController@index',4) }}" >{{ __('Nurse') }}</a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a class="nav-link" href="{{ action('UsersController@index',5) }}" >{{ __('Surgeons') }}</a>
+                                    </li>
+
             </ul>
           
             <!-- Tab panes -->

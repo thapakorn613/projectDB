@@ -14,22 +14,16 @@ class operationController extends Controller
    // }
 
    public function index(){
-      
-    $operation = operation::get();
-
+        $operation = operation::get();
     }
 
     public function getIndex(){
-      
         $operation = operation::get();
         return $operation;
-        }
-
-           
+    }
+     
     public function operationShow($id){
-
         $operation = operation::where('operation_id',$id)->first();
-        
         return view('operation' ,compact('operation'));
     }
 }
