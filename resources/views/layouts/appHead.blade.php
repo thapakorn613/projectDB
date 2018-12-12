@@ -108,6 +108,7 @@ background-size: cover;
                                             @endif
                                             @if (Auth::user()->typeID() == '5')
                                                 <a class="nav-link" href="{{ action('staffController@operation_Surgeons') }}" >{{ __('Operation') }}</a>
+
                                                 <li class="nav-item">
                                                     <a class="nav-link" href="{{ action('UsersController@me') }}" >{{ __('Profile') }}</a>
                                                 </li>

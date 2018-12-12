@@ -86,4 +86,7 @@ Route::any('healthExpert', 'pageController@healthExpert');
 Route::any('aboutAs', 'pageController@aboutAs');
 Route::any('updatedoctor/{id}', 'UsersController@updatedoctor');
 Route::any('showdoctor/{id}', 'UsersController@showdoctor');
-
+Route::any('addfirst/{id}', 'gpController@addfirst');
+Route::any('addsecond/{id}', 'gpController@addsecond');
+Route::any('addth/{id}', 'gpController@addth');
+Route::any('create/', 'gpController@create');

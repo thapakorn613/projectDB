@@ -17,12 +17,7 @@
 
 <div class="container">
       <div class="row">
-                  <?php 
-                        for ( $i = 0 ; $i < count($gp); $i++ ) {
-                              if(Auth::user()->id() == $gp[$i]->userID){
-                                    $patientID = $gp[$i]->patient_id;
-                                    for ( $j = 0 ; $j < count($operation); $j++ ) {
-                                          if($patientID == $operation[$j]->id_user){ ?>
+                  
                                           <div class="col-md-10 text-center">
                                                 <table class="table table-bordered table-striped">
                                                 <tr>
@@ -35,17 +30,17 @@
                                                       <th>Nurse ID</th>
                                                 </tr>
                                                 <tr>
-                                                      <th>{{$operation[$j]->operation_id}}</th>
-                                                      <th>{{$operation[$j]->operation_room_id}}</th>
-                                                      <th>{{$operation[$j]->fee}}</th>
-                                                      <th>{{$operation[$j]->id_user}} : {{$patient[$i]->name}} {{$patient[$i]->surname}}</th>
-                                                      <th>{{$operation[$j]->id_anes}}</th>
-                                                      <th>{{$operation[$j]->id_surgeons}}</th>
-                                                      <th>{{$operation[$j]->id_nurse}}</th>
+                                                      <th>{{$operation->operation_id}}</th>
+                                                      <th>{{$operation->operation_room_id}}</th>
+                                                      <th>{{$operation->fee}}</th>
+                                                      <th>{{$operation->id_user}} : {{$patient->name}} {{$patient->surname}}</th>
+                                                      <th>{{$operation->id_anes}}</th>
+                                                      <th>{{$operation->id_surgeons}}</th>
+                                                      <th>{{$operation->id_nurse}}</th>
                                                 </tr>
                                                 </table>
                                           </div>
-                  <?php }}}} ?>
+                   
       </div>
 </div>
 <center>
