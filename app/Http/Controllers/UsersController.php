@@ -83,9 +83,8 @@ class UsersController extends Controller
             return view('meet' ,['gp' => $gp]);
         }
         
-         
-         return view('me' ,['user' => $user]);
-
+        $patient_type=$user->patient_type()->get()->first();
+                return view('me' ,compact('user','patient_type'));
     }
 
     public function login(Request $request)
