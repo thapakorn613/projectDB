@@ -402,6 +402,19 @@ class UsersController extends Controller
         $user->operation_id = $request->get('operation_id');
      
         $user->save();
+        if($user->typeID==1||$user->typeID==2)
+        {
+            DB::table('patient')
+            ->where('id', $user->id)
+            ->update(['id' => $user->id, 'name' => $user->name, 'surname' => $user->name, 'birthdate' => $user->birthday, 'blood_group' => $user->blood_group, 'age' => $user->age, 'gender' => $user->gender, 'patient_type_id' => $user->patient_type_id]
+        );
+        }
+        
+
+       
+       
+
+
         $users = DB::table('users')->get();
         return view('admin.patient' ,['users' => $users]);
     }
