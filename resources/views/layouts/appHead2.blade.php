@@ -88,7 +88,7 @@ background-size: cover;
                                 @else
                                     @if (Auth::user()->isAdmin() == '1')
                                     <li class="nav-item">
-                                        <a class="nav-link" href="{{ action('UsersController@index',1) }}" >{{ __('Maneger') }}</a>
+                                        <a class="nav-link" href="{{ action('UsersController@manager') }}" >{{ __('Maneger') }}</a>
                                     </li>
                                     @endif
                                     <li class="nav-item">
@@ -168,21 +168,22 @@ background-size: cover;
           <div class=" mt-3">
             <!-- Nav tabs -->
             <ul class="nav nav-tabs">
-              <li class="nav-item">
-                <a class="nav-link active" data-toggle="tab" href="#home">Home</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" data-toggle="tab" href="#centersAndClinics">Centers & Clinics</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" data-toggle="tab" href="#PatientCare">PatientCare</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" data-toggle="tab" href="#HealthExpert">HealthExpert</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" data-toggle="tab" href="#AboutAs">AboutAs</a>
-              </li>
+            <li class="nav-item">
+                                        <a class="nav-link" href="{{ action('UsersController@index',1) }}" >{{ __('patient') }}</a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a class="nav-link" href="{{ action('UsersController@index',2) }}" >{{ __('student') }}</a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a class="nav-link" href="{{ action('UsersController@index',3) }}" >{{ __('gp') }}</a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a class="nav-link" href="{{ action('UsersController@index',4) }}" >{{ __('serguen') }}</a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a class="nav-link" href="{{ action('UsersController@index',5) }}" >{{ __('admin') }}</a>
+                                    </li>
+
             </ul>
           
             <!-- Tab panes -->
