@@ -12,8 +12,6 @@
 */
 
 Auth::routes();
-
-
 /*
 Route::get('/createAccount', function () {
     return view('createAccount');
@@ -22,6 +20,9 @@ Route::get('/createAccount', function () {
 Route::get('/update', function () {
     return view('update');
 });
+
+// chooseController
+Route::any('/chooseLoginForm', 'chooseLoginController@LoginForm');
 
 // HomeController
 Route::get('/', 'HomeController@index')->name('home');

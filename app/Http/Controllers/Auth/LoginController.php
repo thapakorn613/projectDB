@@ -24,6 +24,7 @@ class LoginController extends Controller
 
     use AuthenticatesUsers;
 
+    
     /**
      * Where to redirect users after login.
      *
@@ -69,8 +70,6 @@ class LoginController extends Controller
       //  echo $patient_type;
       //  echo $user;
         return view('me' ,compact('user','patient_type'));*/
-
-       
     }
     public function userLogout()
     {
