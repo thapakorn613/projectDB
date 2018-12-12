@@ -59,6 +59,9 @@ class Handler extends ExceptionHandler
             case 'usergp':
                 $login = 'usergp-login';
                 break;
+            case 'patient':
+                $login = 'patient-login';
+                break;
             default:
                 $login = 'login';
                 break;
