@@ -22,6 +22,14 @@ class UsersController extends Controller
         $this->middleware('auth');
     }
   
+    public function mySchedule(Request $request)
+    {
+        $schedule = DB::table('schedule')->get();
+        $patient = DB::table('patient')->get();
+        return view('mySchedulePatient' , ['schedule'=> $schedule,'patient'=> $patient]);
+    }
+
+
     public function index(Request $request,$id)
     {
        
@@ -352,9 +360,9 @@ class UsersController extends Controller
     {
         $asd =  auth()->User('name');
         $user = User::find($asd->id);
-
-       // return $user;
+        
         $patient_type=$user->patient_type()->get()->first();
+        
         return view('me' ,compact('user','patient_type'));
 
     }

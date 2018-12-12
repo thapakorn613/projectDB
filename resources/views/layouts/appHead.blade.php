@@ -90,6 +90,9 @@ background-size: cover;
                                         <li class="nav-item">
                                                 <a class="nav-link" href="{{ action('UsersController@me') }}" >{{ __('Profile') }}</a>
                                         </li>
+                                        <li class="nav-item">
+                                                <a class="nav-link" href="{{ action('UsersController@mySchedule') }}" >{{ __('mySchedule') }}</a>
+                                        </li>
                                     @endif
                                     @if (Auth::user()->typeID() != '1')
                                         <li class="nav-item">
@@ -115,9 +118,7 @@ background-size: cover;
                                             </li>
                                         @endif
                                     @endif
-                                    <li class="nav-item">
-                                        <a class="nav-link" href="{{ action('gpController@mySchedule') }}" >{{ __('My Schedule') }}</a>
-                                    </li>
+                                    
 
                                     <li class="nav-item dropdown">
                                         <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
