@@ -24,6 +24,7 @@ class LoginController extends Controller
 
     use AuthenticatesUsers;
 
+    
     /**
      * Where to redirect users after login.
      *
@@ -53,7 +54,6 @@ class LoginController extends Controller
                 return view('me' ,['user' => $user]);
             }
         }
-
         return view('auth/login');
     }
     public function userLogout()

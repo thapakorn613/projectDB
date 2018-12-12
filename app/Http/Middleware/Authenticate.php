@@ -15,6 +15,7 @@ class Authenticate extends Middleware
     protected function redirectTo($request)
     {
         if (! $request->expectsJson()) {
+            //return view('chooseLoginFrom');
             return route('usergp.login');
         }
     }
