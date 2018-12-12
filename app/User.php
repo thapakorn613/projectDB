@@ -9,7 +9,6 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 class User extends Authenticatable
 {
     use Notifiable;
-    protected $guard ='web';
 
     /**
      * The attributes that are mass assignable.
@@ -30,10 +29,21 @@ class User extends Authenticatable
     protected $hidden = [
         'password', 'remember_token',
     ];
-
+    public function id()
+	{
+		return $this->id; // this looks for an is_admin column in your users table
+    }
     public function isAdmin()
 	{
 		return $this->is_admin; // this looks for an is_admin column in your users table
+    }
+    public function patientID()
+	{
+		return $this->patientID; // this looks for an is_admin column in your users table
+    }
+    public function typeID()
+	{
+		return $this->typeID; // this looks for an is_admin column in your users table
     }
     
     public function patient_type(){

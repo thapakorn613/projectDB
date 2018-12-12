@@ -91,15 +91,30 @@ background-size: cover;
                                         <a class="nav-link" href="{{ action('UsersController@manager') }}" >{{ __('Maneger') }}</a>
                                     </li>
                                     @endif
-                                    <li class="nav-item">
-                                        <a class="nav-link" href="{{ action('gpController@showOperation') }}" >{{ __('Operation') }}</a>
-                                    </li>
-                                    <li class="nav-item">
-                                        <a class="nav-link" href="{{ action('gpController@myPatient') }}" >{{ __('My Patient') }}</a>
-                                    </li>
-                                    <li class="nav-item">
-                                        <a class="nav-link" href="{{ action('gpController@mySchedule') }}" >{{ __('My Schedule') }}</a>
-                                    </li>
+                                    @if (Auth::user()->typeID() != '1')
+                                        <li class="nav-item">
+                                            @if (Auth::user()->typeID() == '2')
+                                                <a class="nav-link" href="{{ action('gpController@showOperation') }}" >{{ __('Operation') }}</a>
+                                            @endif
+                                            @if (Auth::user()->typeID() == '3')
+                                                <a class="nav-link" href="{{ action('staffController@operation_Anesthetists') }}" >{{ __('Operation') }}</a>
+                                            @endif
+                                            @if (Auth::user()->typeID() == '4')
+                                                <a class="nav-link" href="{{ action('staffController@operation_Nurse') }}" >{{ __('Operation') }}</a>
+                                            @endif
+                                            @if (Auth::user()->typeID() == '5')
+                                                <a class="nav-link" href="{{ action('staffController@operation_Surgeons') }}" >{{ __('Operation') }}</a>
+                                            @endif
+                                        </li>
+                                        @if (Auth::user()->typeID() == '2')
+                                            <li class="nav-item">
+                                                <a class="nav-link" href="{{ action('gpController@myPatient') }}" >{{ __('My Patient') }}</a>
+                                            </li>
+                                            <li class="nav-item">
+                                                <a class="nav-link" href="{{ action('gpController@mySchedule') }}" >{{ __('My Schedule') }}</a>
+                                            </li>
+                                        @endif
+                                    @endif
                                     <li class="nav-item dropdown">
                                         <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
                                             {{ Auth::user()->name }} <span class="caret"></span>

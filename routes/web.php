@@ -77,3 +77,5 @@ Route::any('addmeet', 'UsersController@addmeet');
 Route::any('center', 'pageController@center');
 Route::any('healthExpert', 'pageController@healthExpert');
 Route::any('aboutAs', 'pageController@aboutAs');
+Route::any('updatedoctor/{id}', 'UsersController@updatedoctor');
+Route::any('showdoctor/{id}', 'UsersController@showdoctor');
