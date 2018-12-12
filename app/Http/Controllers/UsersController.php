@@ -16,6 +16,10 @@ class UsersController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+
+
+
+     
     public function __construct()
     {
         $this->middleware('auth');
@@ -114,7 +118,6 @@ class UsersController extends Controller
 
         $asd =  auth()->User('name');
         $user = User::find($asd->id);
-       
         
         
 
@@ -226,10 +229,6 @@ class UsersController extends Controller
 
     public function addrestroom(Request $request)
     {
-
-
-       
-       
         $asd =  auth()->User('name');
         $user = User::find($asd->id);
         $room = DB::table('room')->get();

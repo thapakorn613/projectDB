@@ -25,12 +25,10 @@ class RedirectIfAuthenticated
                 break;
             default:
                 if (Auth::guard($guard)->check()) {
-                    return redirect('/login');
+                    return redirect('login');
                 }
                 break;
         }
-        
-
         return $next($request);
     }
 }
