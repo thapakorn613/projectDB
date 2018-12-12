@@ -16,7 +16,7 @@ class Authenticate extends Middleware
     {
         if (! $request->expectsJson()) {
             //return view('chooseLoginFrom');
-            return route('usergp.login');
+            return route('login');
         }
     }
 }

@@ -39,7 +39,7 @@ class LoginController extends Controller
      */
     public function __construct()
     {
-        $this->middleware('guest:web',['except'=>['logout','userLogout']]);
+        $this->middleware('guest')->except('logout');
     }
 
     protected function authenticated(Request $request, User $user){
@@ -71,9 +71,5 @@ class LoginController extends Controller
       //  echo $user;
         return view('me' ,compact('user','patient_type'));*/
     }
-    public function userLogout()
-    {
-        Auth::guard('web')->logout();
-        return redirect('/');
-    }
+    
 }
