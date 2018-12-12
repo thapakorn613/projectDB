@@ -111,7 +111,7 @@ return [
         'usergps' => [
             'provider' => 'usergps',
             'table' => 'password_resets',
-            'expire' => 15,
+            'expire' => 60,
         ],
     ],
 
