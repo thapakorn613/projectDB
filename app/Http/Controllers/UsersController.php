@@ -26,37 +26,26 @@ class UsersController extends Controller
     {
        
         $users = DB::table('users')->get();
-        if($id==1)
-        {
+        if($id==1){
             return view('admin.patient' ,['users' => $users]);
         }
-        if($id==2)
-        {
+        if($id==2){
             return view('admin.student' , ['users' => $users]);
         }
-        if($id==3)
-        {
+        if($id==3){
             return view('admin.gp' , ['users' => $users]);
         }
-        if($id==4)
-        {
+        if($id==4){
             return view('admin.sergeon' , ['users' => $users]);
         }
-        if($id==5)
-        {
+        if($id==5){
             return view('admin.admin' , ['users' => $users]);
         }
-        
-
     }
 
-    public function meet()
-    {
-       
+    public function meet(){
         $gp = DB::table('general_practice')->get();
-      
         return view('meet' ,['gp' => $gp]);
-
     }
 
     public function addmeet(Request $request)
