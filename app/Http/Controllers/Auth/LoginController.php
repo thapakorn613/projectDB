@@ -63,8 +63,11 @@ class LoginController extends Controller
         }*/
         $userMain = User::find($user->id);
         $patient_type=$userMain->patient_type()->get()->first();
-        return view('me' ,compact('user','patient_type'));
-        
+       
+        //return $patient_type;
+      
+      return view('me' ,compact('user','patient_type'));
+       
       /*  $user = users::find($request->get('id'));
         $patient_type=$user->patient_type();
       //  echo $patient_type;

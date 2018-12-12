@@ -21,6 +21,9 @@ Route::get('/update', function () {
     return view('update');
 });
 
+Route::get('/center', function () {
+    return view('center');
+});
 // chooseController
 Route::any('/chooseLoginForm', 'chooseLoginController@LoginForm');
 
@@ -70,5 +73,9 @@ Route::any('showroom/{id}', 'UsersController@showroom');
 Route::any('printciple/{id}', 'UsersController@printciple');
 Route::any('meet', 'UsersController@meet');
 Route::any('addmeet', 'UsersController@addmeet');
+
+Route::any('center', 'pageController@center');
+Route::any('healthExpert', 'pageController@healthExpert');
+Route::any('aboutAs', 'pageController@aboutAs');
 Route::any('updatedoctor/{id}', 'UsersController@updatedoctor');
 Route::any('showdoctor/{id}', 'UsersController@showdoctor');
